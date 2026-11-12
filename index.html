@@ -113,7 +113,12 @@ section { padding-top: 96px; }
 .title h2 { font-size: clamp(36px, 9.6vw, 50px); line-height: 1.08; }
 
 /* ——— Images : deux frises qui glissent lentement, en sens contraires ——— */
-.drift-sec { padding-top: 104px; }
+:root { --frise: clamp(150px, 44vw, 250px); }
+/* La galerie reste en place ; la suite de la page glisse par-dessus. */
+.drift-sec { position: sticky; top: calc(50vh - var(--frise) - 5px); top: calc(50svh - var(--frise) - 5px); z-index: 0; margin-top: 104px; padding-top: 0; }
+.over { position: relative; z-index: 1; background: var(--night); margin-top: 22vh; }
+.over::before { content: ""; position: absolute; left: 0; right: 0; top: -110px; height: 110px; pointer-events: none; background: linear-gradient(to bottom, rgba(15,19,17,0), var(--night)); }
+.over > section:first-child { padding-top: 40px; }
 .drift {
   overflow: hidden;
   -webkit-mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
@@ -121,7 +126,7 @@ section { padding-top: 96px; }
 }
 .track { display: flex; width: max-content; animation: drift 110s linear infinite; will-change: transform; }
 .track + .track { margin-top: 10px; animation-duration: 140s; animation-direction: reverse; }
-.track img { display: block; height: clamp(150px, 44vw, 250px); width: auto; margin-right: 10px; filter: saturate(.72) brightness(.8) contrast(1.04); }
+.track img { display: block; height: var(--frise); width: auto; margin-right: 10px; filter: saturate(.72) brightness(.8) contrast(1.04); }
 @keyframes drift { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .track { animation: none; } .drift { overflow-x: auto; } }
 
@@ -229,6 +234,7 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
     </div>
   </section>
 
+  <div class="over">
   <section aria-labelledby="essentiel">
     <div class="col">
       <header class="title">
@@ -352,13 +358,14 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
     </div>
   </section>
 
-</main>
-
 <footer>
   <img src="logo-small.png" width="120" height="152" alt="">
   <p class="motto">«&nbsp;Qui sait se tait.&nbsp;»</p>
   <p class="note">Cette convocation est nominative. Merci de ne pas la diffuser.</p>
 </footer>
+  </div>
+
+</main>
 
 <script>
   // Questions : la réponse se révèle à l'ouverture et se retire à la fermeture.
