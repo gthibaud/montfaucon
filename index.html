@@ -76,9 +76,21 @@ a { color: var(--brass); }
 .letter-wrap { position: relative; z-index: 1; margin-top: -104px; padding: 0 16px; }
 .letter {
   position: relative; max-width: 560px; margin: 0 auto; padding: 44px 30px 80px;
-  background: var(--os); color: #1A1E1B;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .28 0 0 0 0 .16 0 0 0 .3 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(0deg, rgba(70,52,24,.045) 0 1px, transparent 1px 5px),
+    radial-gradient(ellipse 90% 60% at 45% 35%, rgba(255,252,240,.5), transparent 70%),
+    linear-gradient(172deg, #ECE5D4, #E3DAC5 55%, #D6CBB1);
+  color: #1A1E1B;
   font-family: var(--serif); font-weight: 500; font-size: 21px; line-height: 1.45;
-  box-shadow: 0 30px 70px rgba(0,0,0,.6);
+  box-shadow: 0 30px 70px rgba(0,0,0,.6), inset 0 0 46px rgba(120,92,48,.2), inset 0 0 2px rgba(60,45,20,.5);
+}
+/* Les deux plis de la lettre */
+.letter::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to bottom, transparent, rgba(60,45,20,.09) 45%, rgba(255,255,255,.26) 55%, transparent) 0 34% / 100% 5px no-repeat,
+    linear-gradient(to bottom, transparent, rgba(60,45,20,.09) 45%, rgba(255,255,255,.26) 55%, transparent) 0 68% / 100% 5px no-repeat;
 }
 .letter .head { font-style: italic; font-size: 22px; color: var(--bordeaux); margin-bottom: 20px; }
 .letter p + p { margin-top: 14px; }
@@ -100,20 +112,18 @@ section { padding-top: 96px; }
 .title p { font-family: var(--serif); font-weight: 600; font-size: 19px; letter-spacing: .03em; color: var(--brass); }
 .title h2 { font-size: clamp(36px, 9.6vw, 50px); line-height: 1.08; }
 
-/* ——— Images : du jour à la nuit ——— */
-.strip-sec { padding-top: 104px; }
-.strip {
-  display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
-  padding: 0 24px; scroll-padding: 0 24px; scrollbar-width: none;
+/* ——— Images : deux frises qui glissent lentement, en sens contraires ——— */
+.drift-sec { padding-top: 104px; }
+.drift {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
 }
-.strip::-webkit-scrollbar { display: none; }
-.strip figure { flex: 0 0 60vw; max-width: 240px; scroll-snap-align: center; }
-.strip img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
-.strip figcaption { margin-top: 10px; font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--os); }
-@media (min-width: 900px) {
-  .strip { justify-content: center; overflow: visible; gap: 16px; max-width: 1120px; margin: 0 auto; }
-  .strip figure { flex: 1 1 0; max-width: 204px; }
-}
+.track { display: flex; width: max-content; animation: drift 110s linear infinite; will-change: transform; }
+.track + .track { margin-top: 10px; animation-duration: 140s; animation-direction: reverse; }
+.track img { display: block; height: clamp(150px, 44vw, 250px); width: auto; margin-right: 10px; filter: saturate(.72) brightness(.8) contrast(1.04); }
+@keyframes drift { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .track { animation: none; } .drift { overflow-x: auto; } }
 
 /* ——— L'essentiel ——— */
 .ledger { margin: 0; display: grid; gap: 10px; }
@@ -124,9 +134,8 @@ section { padding-top: 96px; }
   box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
   -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
 }
-.ledger .row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 10px; font-family: var(--serif); }
+.ledger .row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 14px; font-family: var(--serif); }
 .ledger dt { font-weight: 600; font-size: 20px; letter-spacing: .02em; color: var(--brass); }
-.ledger .dots { flex: 1 1 16px; min-width: 16px; border-bottom: 1px dotted rgba(184,148,92,.55); transform: translateY(-5px); }
 .ledger dd { margin: 0; }
 .ledger dd.v { font-weight: 500; font-size: 26px; line-height: 1.2; color: var(--os); margin-left: auto; text-align: right; font-variant-numeric: lining-nums; }
 .ledger dd.n { margin-top: 6px; font-size: 15px; line-height: 1.5; color: var(--ash); }
@@ -150,7 +159,7 @@ section { padding-top: 96px; }
 .btn:active { transform: scale(.985); background: #a58350; }
 @media (hover: hover) { .btn:hover { background: #c9a56c; } }
 .btn:focus-visible { outline: 2px solid var(--os); outline-offset: 3px; }
-.after { margin-top: 0; padding-top: 24px; border-top: 1px solid var(--hair); }
+.after { padding-top: 22px; border-top: 1px solid var(--hair); font-size: 14.5px; line-height: 1.55; color: var(--ash); }
 .after p + p { margin-top: 10px; }
 
 /* ——— Questions ——— */
@@ -213,13 +222,10 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
     </article>
   </div>
 
-  <section class="strip-sec" aria-label="L'univers de l'Ordre">
-    <div class="strip">
-      <figure><img src="g-domaine.jpg" alt="Une allée bordée d'arbres mène à un manoir en pierre" loading="lazy"><figcaption>L'arrivée</figcaption></figure>
-      <figure><img src="g-chasse.jpg" alt="Des chasseurs en tweed et leurs chiens devant une colonnade" loading="lazy"><figcaption>Le jour</figcaption></figure>
-      <figure><img src="g-escalier.jpg" alt="Une silhouette gravit un escalier bordé de bougies" loading="lazy"><figcaption>La nuit</figcaption></figure>
-      <figure><img src="g-conseil.jpg" alt="Des membres en cape forment un cercle sous des lustres" loading="lazy"><figcaption>Le Conseil</figcaption></figure>
-      <figure><img src="g-feu.jpg" alt="Des silhouettes autour d'un feu dans une forêt brumeuse" loading="lazy"><figcaption>Le feu</figcaption></figure>
+  <section class="drift-sec" aria-hidden="true">
+    <div class="drift">
+      <div class="track"><img src="g-domaine.jpg" width="480" height="600" alt="" decoding="async"><img src="g-salon.jpg" width="360" height="640" alt="" decoding="async"><img src="g-chateau.jpg" width="538" height="640" alt="" decoding="async"><img src="g-table.jpg" width="736" height="414" alt="" decoding="async"><img src="g-chasse.jpg" width="480" height="741" alt="" decoding="async"><img src="g-domaine.jpg" width="480" height="600" alt="" decoding="async"><img src="g-salon.jpg" width="360" height="640" alt="" decoding="async"><img src="g-chateau.jpg" width="538" height="640" alt="" decoding="async"><img src="g-table.jpg" width="736" height="414" alt="" decoding="async"><img src="g-chasse.jpg" width="480" height="741" alt="" decoding="async"></div>
+      <div class="track"><img src="g-escalier.jpg" width="480" height="720" alt="" decoding="async"><img src="g-bal.jpg" width="480" height="640" alt="" decoding="async"><img src="g-manoir.jpg" width="623" height="640" alt="" decoding="async"><img src="g-conseil.jpg" width="480" height="853" alt="" decoding="async"><img src="g-feu.jpg" width="480" height="637" alt="" decoding="async"><img src="g-escalier.jpg" width="480" height="720" alt="" decoding="async"><img src="g-bal.jpg" width="480" height="640" alt="" decoding="async"><img src="g-manoir.jpg" width="623" height="640" alt="" decoding="async"><img src="g-conseil.jpg" width="480" height="853" alt="" decoding="async"><img src="g-feu.jpg" width="480" height="637" alt="" decoding="async"></div>
     </div>
   </section>
 
@@ -230,19 +236,19 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
       </header>
       <dl class="ledger">
         <div>
-          <div class="row"><dt>Dates</dt><span class="dots"></span><dd class="v">31 déc. → 3 janv.</dd></div>
+          <div class="row"><dt>Dates</dt><dd class="v">31 déc. → 3 janv.</dd></div>
           <dd class="n">Arrivée le jeudi 31 à partir de 19&nbsp;h. Départ le dimanche 3 en début d'après-midi.</dd>
         </div>
         <div>
-          <div class="row"><dt>Lieu</dt><span class="dots"></span><dd class="v">à 2&nbsp;h de Paris</dd></div>
+          <div class="row"><dt>Lieu</dt><dd class="v">à 2&nbsp;h de Paris</dd></div>
           <dd class="n">Un domaine dans un rayon de deux heures. L'adresse est communiquée aux membres confirmés.</dd>
         </div>
         <div>
-          <div class="row"><dt>Contribution</dt><span class="dots"></span><dd class="v">400&nbsp;€</dd></div>
+          <div class="row"><dt>Contribution</dt><dd class="v">400&nbsp;€</dd></div>
           <dd class="n">Par personne, en deux versements de 200&nbsp;€, par Wero ou Sumeria. Tout compris, hors transport, plus une charge à assumer pendant le séjour.</dd>
         </div>
         <div class="urgent">
-          <div class="row"><dt>Réponse</dt><span class="dots"></span><dd class="v">avant le 18&nbsp;nov.</dd></div>
+          <div class="row"><dt>Réponse</dt><dd class="v">avant le 18&nbsp;nov.</dd></div>
           <dd class="n">Mercredi à minuit&nbsp;: inscription et premier versement de 200&nbsp;€.</dd>
         </div>
       </dl>
