@@ -6,7 +6,7 @@
 <title>Ordre de Montfaucon</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="description" content="Convocation. Quatre jours, trois nuits, une année qui bascule.">
-<meta name="theme-color" content="#0a0d0b">
+<meta name="theme-color" content="#0F1311">
 <link rel="icon" type="image/png" href="logo-small.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ordre de Montfaucon">
@@ -16,216 +16,181 @@
 <meta property="og:image:height" content="630">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  /* Une nuit au manoir : noir de sous-bois, or du blason, cire rouge, et une lettre sur papier. */
-  --night: #0a0d0b;
-  --bone: #e9e0cc;
-  --ash: #a8a08e;
-  --gold: #c4a265;
-  --gold-dim: rgba(196, 162, 101, .38);
-  --hair: rgba(196, 162, 101, .2);
-  --paper: #e6dbc1;
-  --ink: #221c13;
-  --wax: #7c1d1a;
-  --ember: #dd6a52;
-  --fell: "IM Fell English", "EB Garamond", Garamond, "Times New Roman", serif;
-  --text: "EB Garamond", Garamond, Georgia, serif;
-  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* Codes visuels de la bible d'univers : encre de nuit, os, laiton oxydé, vert de chasse, bordeaux. */
+  --night: #0F1311;
+  --panel: #171C19;
+  --os: #E6DFCF;
+  --brass: #B8945C;
+  --green: #24352B;
+  --bordeaux: #6B2229;
+  --text: #D5CFC0;
+  --ash: #9C978A;
+  --hair: rgba(230, 223, 207, .17);
+  --serif: "Cormorant Garamond", Garamond, "Times New Roman", serif;
+  --sans: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 html, body { margin: 0; }
 body {
-  background: var(--night);
-  color: var(--bone);
-  font-family: var(--text);
-  font-size: 19px;
-  line-height: 1.55;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  background: var(--night); color: var(--text);
+  font-family: var(--sans); font-size: 16.5px; line-height: 1.62;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
 }
-/* Grain léger sur toute la page */
-body::after {
-  content: ""; position: fixed; inset: 0; z-index: 10; pointer-events: none;
-  background: var(--grain); opacity: .07; mix-blend-mode: overlay;
-}
-h1, h2, h3, p, dl, dd, figure { margin: 0; }
-h1, h2, h3 { font-family: var(--fell); font-weight: 400; text-wrap: balance; }
+h1, h2, h3, p, figure { margin: 0; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--os); text-wrap: balance; }
 p { text-wrap: pretty; }
-a { color: var(--gold); }
-:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
-.col { width: 100%; max-width: 600px; margin: 0 auto; padding: 0 max(22px, env(safe-area-inset-left)) 0 max(22px, env(safe-area-inset-right)); }
+a { color: var(--brass); }
+:focus-visible { outline: 1px solid var(--brass); outline-offset: 4px; }
+.col { width: 100%; max-width: 640px; margin: 0 auto; padding: 0 24px; }
 
-/* ——— Seuil ——— */
+/* ——— Couverture ——— */
 .hero {
   position: relative; isolation: isolate; overflow: hidden;
   min-height: 100vh; min-height: 100svh;
   display: grid; align-content: center; justify-items: center; text-align: center;
-  padding: 56px 22px 150px;
+  padding: 56px 24px 150px;
 }
 .hero::before {
   content: ""; position: absolute; inset: -12px; z-index: -2;
   background: url(g-escalier.jpg) center 35% / cover no-repeat;
-  filter: blur(3px) saturate(.75) brightness(.85);
+  filter: blur(4px) grayscale(.55) brightness(.55);
 }
 .hero::after {
   content: ""; position: absolute; inset: 0; z-index: -1;
-  background:
-    radial-gradient(ellipse 80% 55% at 50% 42%, rgba(10,13,11,.35), rgba(10,13,11,.82) 75%),
-    linear-gradient(to bottom, rgba(10,13,11,.5), rgba(10,13,11,0) 30%, rgba(10,13,11,.6) 72%, var(--night) 100%);
+  background: linear-gradient(to bottom, rgba(15,19,17,.72), rgba(15,19,17,.5) 40%, rgba(15,19,17,.8) 75%, var(--night) 100%);
 }
-.blason { width: min(46vw, 200px); height: auto; filter: drop-shadow(0 6px 30px rgba(0,0,0,.7)); }
-.hero h1 { margin-top: 26px; line-height: .95; }
-.hero h1 small { display: block; font-size: clamp(24px, 6.4vw, 34px); font-style: italic; color: var(--gold); margin-bottom: 6px; }
-.hero h1 span { display: block; font-size: clamp(50px, 14.5vw, 104px); letter-spacing: -.01em; text-shadow: 0 2px 30px rgba(0,0,0,.8); }
-.hero .sub { margin-top: 20px; font-family: var(--fell); font-style: italic; font-size: clamp(20px, 5.4vw, 25px); line-height: 1.3; color: var(--bone); max-width: 17em; }
-.hero .when { margin-top: 18px; font-size: 18px; color: var(--ash); }
-.hero .when b { font-weight: 400; color: var(--gold); }
+.blason { width: min(42vw, 180px); height: auto; }
+.hero h1 { margin-top: 30px; line-height: 1; }
+.hero h1 small { display: block; font-size: clamp(22px, 5.8vw, 28px); font-style: italic; color: var(--brass); margin-bottom: 4px; }
+.hero h1 span { display: block; font-size: clamp(54px, 15.5vw, 118px); letter-spacing: .02em; }
+.hero .rule { width: 44px; height: 1px; background: var(--brass); margin: 26px 0 22px; }
+.hero .sub { font-family: var(--serif); font-style: italic; font-size: clamp(21px, 5.6vw, 26px); line-height: 1.3; color: var(--os); max-width: 16em; }
+.hero .when { margin-top: 16px; font-size: 14.5px; color: var(--ash); }
 
-/* ——— La lettre ——— */
-.letter-wrap { position: relative; z-index: 1; margin-top: -104px; padding: 0 14px; }
+/* ——— Le pli ——— */
+.letter-wrap { position: relative; z-index: 1; margin-top: -104px; padding: 0 16px; }
 .letter {
-  position: relative; max-width: 560px; margin: 0 auto;
-  padding: 46px 30px 78px;
-  background: var(--grain), linear-gradient(175deg, #ece2ca, var(--paper) 55%, #d9cbab);
-  background-blend-mode: multiply;
-  color: var(--ink);
-  font-family: var(--fell); font-size: 20px; line-height: 1.5;
-  box-shadow: 0 30px 70px rgba(0,0,0,.75), 0 2px 0 rgba(255,255,255,.25) inset;
-  transform: rotate(-.6deg);
+  position: relative; max-width: 560px; margin: 0 auto; padding: 44px 30px 80px;
+  background: var(--os); color: #1A1E1B;
+  font-family: var(--serif); font-weight: 500; font-size: 21px; line-height: 1.45;
+  box-shadow: 0 30px 70px rgba(0,0,0,.6);
 }
-.letter::before { content: ""; position: absolute; inset: 9px; border: 1px solid rgba(34,28,19,.28); pointer-events: none; }
-.letter .head { text-align: center; font-style: italic; font-size: 22px; margin-bottom: 22px; color: var(--wax); }
+.letter .head { font-style: italic; font-size: 22px; color: var(--bordeaux); margin-bottom: 20px; }
 .letter p + p { margin-top: 14px; }
-.letter .first::first-letter { float: left; font-size: 3.5em; line-height: .82; padding: 5px 8px 0 0; color: var(--wax); }
-.letter .lone { text-align: center; font-style: italic; font-size: 23px; margin: 22px 0; }
+.letter .lone { text-wrap: balance; font-style: italic; font-size: 25px; line-height: 1.25; margin: 22px 0; }
 .letter .sig { margin-top: 26px; text-align: right; font-style: italic; }
 .seal {
-  position: absolute; left: 50%; bottom: -40px; width: 86px; height: 86px; margin-left: -43px;
+  position: absolute; left: 50%; bottom: -38px; width: 80px; height: 80px; margin-left: -40px;
   display: grid; place-items: center;
   border-radius: 47% 53% 50% 50% / 52% 47% 53% 48%;
-  background: radial-gradient(circle at 36% 30%, #a5352c, var(--wax) 48%, #4c0f0e 100%);
-  box-shadow: 0 6px 14px rgba(0,0,0,.55), inset 0 0 0 7px rgba(0,0,0,.13), inset 0 2px 3px rgba(255,255,255,.22);
-  transform: rotate(7deg);
+  background: radial-gradient(circle at 36% 30%, #8a3038, var(--bordeaux) 50%, #45141a 100%);
+  box-shadow: 0 6px 14px rgba(0,0,0,.5), inset 0 0 0 6px rgba(0,0,0,.14), inset 0 2px 3px rgba(255,255,255,.18);
+  transform: rotate(6deg);
 }
-.seal img { width: 44px; height: auto; filter: brightness(0) opacity(.42); }
+.seal img { width: 40px; height: auto; filter: brightness(0) opacity(.42); }
 
-/* ——— Sections ——— */
+/* ——— Rubriques ——— */
 section { padding-top: 96px; }
-.title { text-align: center; margin-bottom: 34px; }
-.title p { font-family: var(--fell); font-style: italic; font-size: 20px; color: var(--gold); }
-.title h2 { font-size: clamp(34px, 9vw, 44px); line-height: 1.1; margin-top: 2px; }
-.title::after {
-  content: ""; display: block; height: 9px; width: 150px; margin: 18px auto 0;
-  background:
-    linear-gradient(to right, transparent, var(--gold-dim)) left center / 62px 1px no-repeat,
-    linear-gradient(to left, transparent, var(--gold-dim)) right center / 62px 1px no-repeat;
-}
-.title { position: relative; }
-.title::before {
-  content: ""; position: absolute; left: 50%; bottom: 1px; width: 7px; height: 7px; margin-left: -3.5px;
-  background: var(--gold); transform: rotate(45deg);
+.title { margin-bottom: 30px; }
+.title p { font-family: var(--serif); font-weight: 600; font-size: 19px; letter-spacing: .03em; color: var(--brass); }
+.title h2 { font-size: clamp(36px, 9.6vw, 50px); line-height: 1.08; margin-top: 8px; }
+
+/* ——— Le jour et la nuit ——— */
+.regimes { padding-top: 104px; display: grid; }
+.regime { padding: 56px 24px 60px; }
+.regime .title { margin-bottom: 26px; }
+.regime .shots { display: grid; gap: 10px; }
+.regime figure img { display: block; width: 100%; object-fit: cover; }
+.regime figcaption { margin-top: 8px; font-size: 13.5px; }
+.jour { background: var(--os); color: #2a2e2a; }
+.jour .title p { color: #6E5630; }
+.jour .title h2 { color: #1A1E1B; }
+.jour .shots { grid-template-columns: 1fr 1fr; }
+.jour img { aspect-ratio: 3 / 4; }
+.jour figcaption { color: #5d5a50; }
+.nuit .shots { grid-template-columns: repeat(3, 1fr); }
+.nuit img { aspect-ratio: 9 / 16; }
+.nuit figcaption { color: var(--ash); }
+.regime > * { max-width: 592px; margin-left: auto; margin-right: auto; }
+@media (min-width: 960px) {
+  .regimes { grid-template-columns: 1fr 1fr; }
+  .regime { padding: 88px 64px 96px; }
+  .regime > * { max-width: 520px; }
+  .jour img, .nuit img { aspect-ratio: auto; height: 340px; }
 }
 
-/* ——— Arcade ——— */
-.arcade-sec { padding-top: 110px; }
-.arcade {
-  display: flex; gap: 14px; align-items: flex-end;
-  overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
-  padding: 6px 22px 4px; scroll-padding: 0 22px; scrollbar-width: none;
+/* ——— L'essentiel ——— */
+.facts { display: grid; gap: 0 28px; }
+.fact { border-top: 1px solid var(--brass); padding: 14px 0 28px; }
+.fact .v { font-family: var(--serif); font-weight: 500; font-size: 33px; line-height: 1.15; color: var(--os); font-variant-numeric: lining-nums; }
+.fact .n { margin-top: 6px; font-size: 15px; line-height: 1.5; color: var(--ash); }
+.fact.urgent { border-top: 0; background: var(--bordeaux); padding: 18px 20px 20px; margin-top: 2px; }
+.fact.urgent .n { color: #E3CFCB; }
+@media (min-width: 600px) {
+  .facts { grid-template-columns: 1fr 1fr; }
+  .fact.urgent { margin: 0 0 28px; }
 }
-.arcade::-webkit-scrollbar { display: none; }
-.arcade figure { flex: 0 0 58vw; max-width: 236px; scroll-snap-align: center; text-align: center; }
-.arch { padding: 5px; border: 1px solid var(--gold-dim); border-radius: 999px 999px 0 0; }
-.arch img { display: block; width: 100%; aspect-ratio: 3 / 5; object-fit: cover; border-radius: 999px 999px 0 0; filter: sepia(.2) saturate(.85) contrast(1.05) brightness(.92); }
-.arcade figcaption { margin-top: 12px; font-family: var(--fell); font-style: italic; font-size: 20px; color: var(--bone); }
-.arcade figcaption i { color: var(--gold); margin-right: .25em; }
-.hint { text-align: center; margin-top: 14px; font-style: italic; font-size: 16px; color: var(--ash); }
-@media (min-width: 900px) {
-  .arcade { justify-content: center; overflow: visible; gap: 20px; max-width: 1120px; margin: 0 auto; }
-  .arcade figure { flex: 1 1 0; max-width: 200px; }
-  .arcade figure:nth-child(odd) { padding-bottom: 28px; }
-  .hint { display: none; }
-}
-
-/* ——— L'essentiel : registre à points de conduite ——— */
-.ledger > div { padding: 18px 0; border-bottom: 1px solid var(--hair); }
-.ledger > div:first-child { border-top: 1px solid var(--hair); }
-.ledger .row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 10px; font-family: var(--fell); }
-.ledger dt { font-style: italic; font-size: 21px; color: var(--gold); }
-.ledger .dots { flex: 1 1 24px; min-width: 24px; border-bottom: 2px dotted var(--gold-dim); transform: translateY(-5px); }
-.ledger dd.v { font-family: var(--text); font-variant-numeric: lining-nums; font-size: 24px; line-height: 1.25; margin-left: auto; text-align: right; }
-.ledger dd.n { margin-top: 6px; font-size: 17.5px; line-height: 1.45; color: var(--ash); }
-.ledger .urgent dd.v { color: var(--ember); }
 
 /* ——— Confirmer ——— */
 .steps { list-style: none; margin: 0; padding: 0; }
-.steps > li { padding: 26px 0; border-top: 1px solid var(--hair); }
-.steps > li:last-child { border-bottom: 1px solid var(--hair); }
-.steps h3 { font-size: 27px; line-height: 1.2; margin-bottom: 8px; }
-.steps h3 i { color: var(--gold); margin-right: .3em; }
+.steps > li { display: grid; grid-template-columns: 38px 1fr; gap: 0 8px; padding: 24px 0 28px; border-top: 1px solid var(--hair); }
+.steps .num { font-family: var(--serif); font-size: 40px; line-height: .95; color: var(--brass); }
+.steps h3 { font-weight: 500; font-size: 28px; line-height: 1.15; margin-bottom: 10px; }
 .steps p + p { margin-top: 10px; }
-.steps b, .nb b { font-weight: 500; color: #fff6e2; }
-.steps .small { font-size: 17.5px; color: var(--ash); }
+.steps b { font-weight: 600; color: var(--os); }
+.steps .small { font-size: 14.5px; color: var(--ash); }
 .btn {
   display: flex; align-items: center; justify-content: center; text-align: center;
-  min-height: 58px; margin-top: 18px; padding: 12px 22px;
-  background: linear-gradient(180deg, #d3b379, #b8955a);
-  color: #17120a; text-decoration: none;
-  font-family: var(--fell); font-size: 23px; line-height: 1.15;
-  outline: 1px solid rgba(23,18,10,.45); outline-offset: -6px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.5);
-  -webkit-tap-highlight-color: transparent;
-  transition: filter .15s, transform .15s;
+  min-height: 56px; margin-top: 20px; padding: 10px 26px;
+  background: var(--brass); color: var(--night); text-decoration: none;
+  font-family: var(--serif); font-weight: 600; font-size: 22px; letter-spacing: .02em; line-height: 1.15;
+  -webkit-tap-highlight-color: transparent; transition: background .15s, transform .15s;
 }
-.btn:active { transform: scale(.985); filter: brightness(.92); }
-@media (hover: hover) { .btn:hover { filter: brightness(1.08); } }
-.btn:focus-visible { outline: 2px solid var(--bone); outline-offset: 3px; }
-.nb { margin-top: 24px; font-size: 18.5px; }
-.nb + .nb { margin-top: 12px; }
-.nb i:first-child { font-family: var(--fell); color: var(--gold); margin-right: .2em; }
+.btn:active { transform: scale(.985); background: #a58350; }
+@media (hover: hover) { .btn:hover { background: #c9a56c; } }
+.btn:focus-visible { outline: 2px solid var(--os); outline-offset: 3px; }
+.nb { background: var(--panel); border-left: 2px solid var(--brass); padding: 20px 20px 22px 22px; }
+.nb h3 { font-weight: 600; font-size: 20px; letter-spacing: .02em; color: var(--brass); margin-bottom: 8px; }
+.nb p + p { margin-top: 10px; }
 
 /* ——— Questions ——— */
-.faq h3 { font-style: italic; font-size: 25px; color: var(--gold); margin: 40px 0 6px; }
+.faq h3 { font-weight: 600; font-size: 20px; letter-spacing: .03em; color: var(--brass); margin: 40px 0 4px; }
 .faq h3:first-child { margin-top: 0; }
 details { border-bottom: 1px solid var(--hair); }
 summary {
   list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 18px;
-  min-height: 60px; padding: 14px 0;
-  font-family: var(--fell); font-size: 21.5px; line-height: 1.25;
+  min-height: 60px; padding: 13px 0;
+  font-family: var(--serif); font-weight: 500; font-size: 23px; line-height: 1.2; color: var(--os);
   -webkit-tap-highlight-color: transparent;
 }
 summary::-webkit-details-marker { display: none; }
 summary::after {
-  content: ""; flex: none; width: 9px; height: 9px; margin: 0 6px 4px 0;
-  border-right: 1.5px solid var(--gold); border-bottom: 1.5px solid var(--gold);
+  content: ""; flex: none; width: 8px; height: 8px; margin: 0 6px 4px 0;
+  border-right: 1px solid var(--brass); border-bottom: 1px solid var(--brass);
   transform: rotate(45deg); transition: transform .2s;
 }
 details[open] summary::after { transform: translateY(4px) rotate(-135deg); }
-details[open] summary { color: #fff6e2; }
-details > div { padding: 0 0 22px; color: #d6cdb9; }
+details > div { padding: 0 0 22px; max-width: 34em; }
 details > div p + p { margin-top: 10px; }
 
 /* ——— Pied ——— */
-footer { text-align: center; padding: 100px 22px calc(64px + env(safe-area-inset-bottom)); color: var(--ash); }
-footer img { width: 54px; height: auto; opacity: .9; }
-footer .motto { margin-top: 14px; font-family: var(--fell); font-style: italic; font-size: 24px; color: var(--gold); }
-footer .fr { font-style: italic; }
-footer .note { margin-top: 26px; font-size: 16.5px; }
+footer { text-align: center; padding: 104px 24px calc(64px + env(safe-area-inset-bottom)); color: var(--ash); }
+footer img { width: 52px; height: auto; }
+footer .motto { margin-top: 16px; font-family: var(--serif); font-style: italic; font-size: 25px; color: var(--os); }
+footer .note { margin-top: 22px; font-size: 13.5px; }
 
 @media (min-width: 700px) {
-  body { font-size: 20px; }
-  .letter { padding: 60px 56px 92px; font-size: 21px; }
-  .btn { display: inline-flex; padding: 12px 44px; }
-  section { padding-top: 120px; }
+  body { font-size: 17px; }
+  .letter { padding: 60px 60px 96px; font-size: 23px; }
+  .btn { display: inline-flex; padding: 10px 44px; }
+  section { padding-top: 128px; }
 }
-@media (max-width: 350px) {
-  .letter { padding: 40px 22px 74px; font-size: 19px; }
-  .ledger dd.v { font-size: 22px; }
-}
+@media (max-width: 350px) { .letter { padding: 38px 22px 74px; font-size: 20px; } .fact .v { font-size: 29px; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
@@ -233,9 +198,10 @@ footer .note { margin-top: 26px; font-size: 16.5px; }
 
 <header class="hero">
   <img class="blason" src="logo.png" width="560" height="707" alt="Blason de l'Ordre de Montfaucon : une chouette, une épée et un M, sous la devise Qui scit, tacet">
-  <h1><small>Ordre de</small><span>Montfaucon</span></h1>
+  <h1><small>L'Ordre de</small><span>Montfaucon</span></h1>
+  <div class="rule" aria-hidden="true"></div>
   <p class="sub">Quatre jours, trois nuits, une année qui bascule.</p>
-  <p class="when">Du <b>31 décembre</b> au <b>3 janvier</b>, à deux heures de Paris</p>
+  <p class="when">31 décembre 2026 – 3 janvier 2027 · à deux heures de Paris</p>
 </header>
 
 <main>
@@ -243,7 +209,7 @@ footer .note { margin-top: 26px; font-size: 16.5px; }
   <div class="letter-wrap">
     <article class="letter" aria-label="Convocation">
       <p class="head">Convocation</p>
-      <p class="first">Depuis deux siècles, l'Ordre se réunit une fois l'an, loin des regards, à l'heure où l'année change de main.</p>
+      <p>Depuis deux siècles, l'Ordre se réunit une fois l'an, loin des regards, à l'heure où l'année change de main.</p>
       <p class="lone">Cette fois, votre nom a été prononcé.</p>
       <p>Vous serez reçu dans un domaine retiré, à quelques heures de Paris. Vous y croiserez des visages familiers. Ne vous y fiez pas&nbsp;: certains membres servent d'autres intérêts que ceux de l'Ordre. Avant que l'année ne s'achève, il faudra les avoir démasqués.</p>
       <p>Le reste ne s'écrit pas.</p>
@@ -252,16 +218,29 @@ footer .note { margin-top: 26px; font-size: 16.5px; }
     </article>
   </div>
 
-  <section class="arcade-sec" aria-label="L'univers de l'Ordre">
-    <div class="arcade">
-      <figure><div class="arch"><img src="g-domaine.jpg" alt="Une allée bordée d'arbres mène à un manoir en pierre" loading="lazy"></div><figcaption><i>i.</i> L'arrivée</figcaption></figure>
-      <figure><div class="arch"><img src="g-chasse.jpg" alt="Des chasseurs en tweed et leurs chiens devant une colonnade" loading="lazy"></div><figcaption><i>ii.</i> Le jour</figcaption></figure>
-      <figure><div class="arch"><img src="g-escalier.jpg" alt="Une silhouette encapuchonnée gravit un escalier bordé de bougies" loading="lazy"></div><figcaption><i>iii.</i> La nuit</figcaption></figure>
-      <figure><div class="arch"><img src="g-conseil.jpg" alt="Des membres masqués en cape forment un cercle sous des lustres" loading="lazy"></div><figcaption><i>iv.</i> Le conseil</figcaption></figure>
-      <figure><div class="arch"><img src="g-feu.jpg" alt="Des silhouettes dansent autour d'un feu dans une forêt brumeuse" loading="lazy"></div><figcaption><i>v.</i> Le feu</figcaption></figure>
-    </div>
-    <p class="hint" aria-hidden="true">Du jour à la nuit, faites défiler</p>
-  </section>
+  <div class="regimes">
+    <section class="regime jour" aria-labelledby="jour">
+      <header class="title">
+        <p>Le jour&nbsp;: le Domaine</p>
+        <h2 id="jour">Brume, chasse et vieilles fortunes</h2>
+      </header>
+      <div class="shots">
+        <figure><img src="g-domaine.jpg" alt="Une allée bordée d'arbres mène à un manoir en pierre" loading="lazy"><figcaption>L'arrivée</figcaption></figure>
+        <figure><img src="g-chasse.jpg" alt="Des chasseurs en tweed et leurs chiens devant une colonnade" loading="lazy"><figcaption>La battue</figcaption></figure>
+      </div>
+    </section>
+    <section class="regime nuit" aria-labelledby="nuit">
+      <header class="title">
+        <p>La nuit&nbsp;: le Conseil</p>
+        <h2 id="nuit">Bougies, serments et disparitions</h2>
+      </header>
+      <div class="shots">
+        <figure><img src="g-escalier.jpg" alt="Une silhouette gravit un escalier bordé de bougies" loading="lazy"><figcaption>L'escalier</figcaption></figure>
+        <figure><img src="g-conseil.jpg" alt="Des membres en cape forment un cercle sous des lustres" loading="lazy"><figcaption>Le Conseil</figcaption></figure>
+        <figure><img src="g-feu.jpg" alt="Des silhouettes autour d'un feu dans une forêt brumeuse" loading="lazy"><figcaption>Le feu</figcaption></figure>
+      </div>
+    </section>
+  </div>
 
   <section aria-labelledby="essentiel">
     <div class="col">
@@ -269,24 +248,24 @@ footer .note { margin-top: 26px; font-size: 16.5px; }
         <p>Ce qu'il faut savoir</p>
         <h2 id="essentiel">L'essentiel</h2>
       </header>
-      <dl class="ledger">
-        <div>
-          <div class="row"><dt>Dates</dt><span class="dots"></span><dd class="v">31 déc. → 3 janv.</dd></div>
-          <dd class="n">Arrivée le jeudi 31 à partir de 19&nbsp;h. Départ le dimanche 3 en début d'après-midi.</dd>
+      <div class="facts">
+        <div class="fact">
+          <p class="v">31 déc. → 3 janv.</p>
+          <p class="n">Arrivée le jeudi 31 à partir de 19&nbsp;h. Départ le dimanche 3 en début d'après-midi.</p>
         </div>
-        <div>
-          <div class="row"><dt>Lieu</dt><span class="dots"></span><dd class="v">à 2&nbsp;h de Paris</dd></div>
-          <dd class="n">Un domaine dans un rayon de deux heures. L'adresse est communiquée aux membres confirmés.</dd>
+        <div class="fact">
+          <p class="v">À 2&nbsp;h de Paris</p>
+          <p class="n">Un domaine dans un rayon de deux heures. L'adresse est communiquée aux membres confirmés.</p>
         </div>
-        <div>
-          <div class="row"><dt>Contribution</dt><span class="dots"></span><dd class="v">400&nbsp;€ par personne</dd></div>
-          <dd class="n">En deux versements de 200&nbsp;€. Tout compris, hors transport, plus une charge à assumer pendant le séjour.</dd>
+        <div class="fact">
+          <p class="v">400&nbsp;€ par personne</p>
+          <p class="n">En deux versements de 200&nbsp;€. Tout compris, hors transport, plus une charge à assumer pendant le séjour.</p>
         </div>
-        <div class="urgent">
-          <div class="row"><dt>Réponse</dt><span class="dots"></span><dd class="v">avant le mercredi 18&nbsp;nov.</dd></div>
-          <dd class="n">À minuit&nbsp;: inscription et premier versement de 200&nbsp;€.</dd>
+        <div class="fact urgent">
+          <p class="v">Réponse avant le 18&nbsp;nov.</p>
+          <p class="n">Mercredi à minuit&nbsp;: inscription et premier versement de 200&nbsp;€.</p>
         </div>
-      </dl>
+      </div>
     </div>
   </section>
 
@@ -298,19 +277,28 @@ footer .note { margin-top: 26px; font-size: 16.5px; }
       </header>
       <ol class="steps">
         <li>
-          <h3><i>I.</i> Remplissez le registre</h3>
-          <p>Votre nom, votre adresse postale, votre éventuel invité, votre préférence de couchage et la charge que vous prendrez.</p>
-          <a class="btn" href="https://gregoire-thibaud.notion.site/de69bc7065644ed49cb37f1b41de4d1f?pvs=105" target="_blank" rel="noopener">Ouvrir le registre</a>
+          <span class="num" aria-hidden="true">1</span>
+          <div>
+            <h3>Remplissez le registre</h3>
+            <p>Votre nom, votre adresse postale, votre éventuel invité, votre préférence de couchage et la charge que vous prendrez.</p>
+            <a class="btn" href="https://gregoire-thibaud.notion.site/de69bc7065644ed49cb37f1b41de4d1f?pvs=105" target="_blank" rel="noopener">Ouvrir le registre</a>
+          </div>
         </li>
         <li>
-          <h3><i>II.</i> Réglez votre contribution par Wero</h3>
-          <p><b>200&nbsp;€ avant le mercredi 18 novembre</b>, puis <b>200&nbsp;€ avant le 1er décembre</b>.</p>
-          <p>Le numéro Wero figure dans votre e‑mail d'invitation.</p>
-          <p class="small">Destinataire&nbsp;: Grégoire Thibaud. Motif&nbsp;: MONTFAUCON – Prénom Nom. Un virement par personne, invité compris.</p>
+          <span class="num" aria-hidden="true">2</span>
+          <div>
+            <h3>Réglez votre contribution par Wero</h3>
+            <p><b>200&nbsp;€ avant le mercredi 18 novembre</b>, puis <b>200&nbsp;€ avant le 1er décembre</b>.</p>
+            <p>Le numéro Wero figure dans votre e‑mail d'invitation.</p>
+            <p class="small">Destinataire&nbsp;: Grégoire Thibaud. Motif&nbsp;: MONTFAUCON – Prénom Nom. Un virement par personne, invité compris.</p>
+          </div>
         </li>
       </ol>
-      <p class="nb"><i>Nota bene.</i> Seul le premier versement vaut confirmation. Ces acomptes nous permettent de réserver le domaine&nbsp;; sans eux, rien ne peut être retenu. Les places sont limitées.</p>
-      <p class="nb">Tout le reste vous parviendra plus tard, par courrier, à l'adresse indiquée dans le registre. Surveillez votre pigeonnier.</p>
+      <div class="nb">
+        <h3>À retenir</h3>
+        <p>Seul le premier versement vaut confirmation. Ces acomptes nous permettent de réserver le domaine&nbsp;; sans eux, rien ne peut être retenu. Les places sont limitées.</p>
+        <p>Tout le reste vous parviendra plus tard, par courrier, à l'adresse indiquée dans le registre. Surveillez votre pigeonnier.</p>
+      </div>
     </div>
   </section>
 
@@ -389,8 +377,7 @@ footer .note { margin-top: 26px; font-size: 16.5px; }
 
 <footer>
   <img src="logo-small.png" width="120" height="152" alt="">
-  <p class="motto">Qui scit, tacet</p>
-  <p class="fr">Qui sait se tait</p>
+  <p class="motto">«&nbsp;Qui sait se tait.&nbsp;»</p>
   <p class="note">Cette convocation est nominative. Merci de ne pas la diffuser.</p>
 </footer>
 
