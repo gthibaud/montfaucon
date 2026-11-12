@@ -2,11 +2,11 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ordre de Montfaucon</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="description" content="Convocation. Quatre jours, trois nuits, une année qui bascule.">
-<meta name="theme-color" content="#0d110f">
+<meta name="theme-color" content="#0a0d0b">
 <link rel="icon" type="image/png" href="logo-small.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ordre de Montfaucon">
@@ -16,288 +16,383 @@
 <meta property="og:image:height" content="630">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Cormorant+SC:wght@500;600&family=Spectral:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root {
-  /* Un seul monde visuel : un manoir la nuit. Colonne étroite, typographie de faire-part, or vieilli sur vert de chasse presque noir. */
-  --night: #0d110f;
-  --moss: #161d19;
-  --line: #2c362f;
-  --bone: #e6dfcf;
-  --ash: #a39d8e;
-  --gold: #bf9d5f;
-  --blood: #8c2a26;
-  --display: "Cormorant Garamond", "Garamond", "Times New Roman", serif;
-  --caps: "Cormorant SC", "Cormorant Garamond", "Garamond", serif;
-  --body: "Spectral", "Georgia", serif;
+  /* Une nuit au manoir : noir de sous-bois, or du blason, cire rouge, et une lettre sur papier. */
+  --night: #0a0d0b;
+  --bone: #e9e0cc;
+  --ash: #a8a08e;
+  --gold: #c4a265;
+  --gold-dim: rgba(196, 162, 101, .38);
+  --hair: rgba(196, 162, 101, .2);
+  --paper: #e6dbc1;
+  --ink: #221c13;
+  --wax: #7c1d1a;
+  --ember: #dd6a52;
+  --fell: "IM Fell English", "EB Garamond", Garamond, "Times New Roman", serif;
+  --text: "EB Garamond", Garamond, Georgia, serif;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
 html, body { margin: 0; }
 body {
   background: var(--night);
   color: var(--bone);
-  font-family: var(--body);
-  font-weight: 300;
-  font-size: 17px;
-  line-height: 1.65;
+  font-family: var(--text);
+  font-size: 19px;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
-body::before {
-  content: "";
-  position: fixed; inset: 0;
-  pointer-events: none;
-  background: radial-gradient(ellipse 70% 45% at 50% 0%, rgba(191,157,95,0.10), transparent 70%);
+/* Grain léger sur toute la page */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 10; pointer-events: none;
+  background: var(--grain); opacity: .07; mix-blend-mode: overlay;
 }
-main { position: relative; max-width: 680px; margin: 0 auto; padding: 56px 20px 80px; display: grid; gap: 72px; }
-h1, h2, h3 { font-family: var(--display); font-weight: 500; text-wrap: balance; margin: 0; }
-p { margin: 0; }
+h1, h2, h3, p, dl, dd, figure { margin: 0; }
+h1, h2, h3 { font-family: var(--fell); font-weight: 400; text-wrap: balance; }
+p { text-wrap: pretty; }
 a { color: var(--gold); }
-:focus-visible { outline: 1px solid var(--gold); outline-offset: 3px; }
+:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
+.col { width: 100%; max-width: 600px; margin: 0 auto; padding: 0 max(22px, env(safe-area-inset-left)) 0 max(22px, env(safe-area-inset-right)); }
 
-.eyebrow { font-family: var(--caps); letter-spacing: 0.22em; font-size: 14px; color: var(--gold); }
-.rule { display: flex; align-items: center; gap: 14px; color: var(--gold); }
-.rule::before, .rule::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+/* ——— Seuil ——— */
+.hero {
+  position: relative; isolation: isolate; overflow: hidden;
+  min-height: 100vh; min-height: 100svh;
+  display: grid; align-content: center; justify-items: center; text-align: center;
+  padding: 56px 22px 150px;
+}
+.hero::before {
+  content: ""; position: absolute; inset: -12px; z-index: -2;
+  background: url(g-escalier.jpg) center 35% / cover no-repeat;
+  filter: blur(3px) saturate(.75) brightness(.85);
+}
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 55% at 50% 42%, rgba(10,13,11,.35), rgba(10,13,11,.82) 75%),
+    linear-gradient(to bottom, rgba(10,13,11,.5), rgba(10,13,11,0) 30%, rgba(10,13,11,.6) 72%, var(--night) 100%);
+}
+.blason { width: min(46vw, 200px); height: auto; filter: drop-shadow(0 6px 30px rgba(0,0,0,.7)); }
+.hero h1 { margin-top: 26px; line-height: .95; }
+.hero h1 small { display: block; font-size: clamp(24px, 6.4vw, 34px); font-style: italic; color: var(--gold); margin-bottom: 6px; }
+.hero h1 span { display: block; font-size: clamp(50px, 14.5vw, 104px); letter-spacing: -.01em; text-shadow: 0 2px 30px rgba(0,0,0,.8); }
+.hero .sub { margin-top: 20px; font-family: var(--fell); font-style: italic; font-size: clamp(20px, 5.4vw, 25px); line-height: 1.3; color: var(--bone); max-width: 17em; }
+.hero .when { margin-top: 18px; font-size: 18px; color: var(--ash); }
+.hero .when b { font-weight: 400; color: var(--gold); }
 
-/* Hero */
-.hero { display: grid; justify-items: center; text-align: center; gap: 22px; }
-.seal { width: 190px; height: auto; max-width: 100%; }
-.hero h1 { font-size: clamp(40px, 8vw, 58px); line-height: 1.05; letter-spacing: 0.01em; }
-.hero .sub { font-family: var(--display); font-style: italic; font-size: 22px; color: var(--ash); }
-.letter { display: grid; gap: 16px; max-width: 34em; text-align: left; font-size: 18px; }
-.letter .sig { font-family: var(--display); font-style: italic; font-size: 21px; color: var(--gold); text-align: right; }
-.motto { font-family: var(--caps); letter-spacing: 0.18em; color: var(--ash); font-size: 15px; }
+/* ——— La lettre ——— */
+.letter-wrap { position: relative; z-index: 1; margin-top: -104px; padding: 0 14px; }
+.letter {
+  position: relative; max-width: 560px; margin: 0 auto;
+  padding: 46px 30px 78px;
+  background: var(--grain), linear-gradient(175deg, #ece2ca, var(--paper) 55%, #d9cbab);
+  background-blend-mode: multiply;
+  color: var(--ink);
+  font-family: var(--fell); font-size: 20px; line-height: 1.5;
+  box-shadow: 0 30px 70px rgba(0,0,0,.75), 0 2px 0 rgba(255,255,255,.25) inset;
+  transform: rotate(-.6deg);
+}
+.letter::before { content: ""; position: absolute; inset: 9px; border: 1px solid rgba(34,28,19,.28); pointer-events: none; }
+.letter .head { text-align: center; font-style: italic; font-size: 22px; margin-bottom: 22px; color: var(--wax); }
+.letter p + p { margin-top: 14px; }
+.letter .first::first-letter { float: left; font-size: 3.5em; line-height: .82; padding: 5px 8px 0 0; color: var(--wax); }
+.letter .lone { text-align: center; font-style: italic; font-size: 23px; margin: 22px 0; }
+.letter .sig { margin-top: 26px; text-align: right; font-style: italic; }
+.seal {
+  position: absolute; left: 50%; bottom: -40px; width: 86px; height: 86px; margin-left: -43px;
+  display: grid; place-items: center;
+  border-radius: 47% 53% 50% 50% / 52% 47% 53% 48%;
+  background: radial-gradient(circle at 36% 30%, #a5352c, var(--wax) 48%, #4c0f0e 100%);
+  box-shadow: 0 6px 14px rgba(0,0,0,.55), inset 0 0 0 7px rgba(0,0,0,.13), inset 0 2px 3px rgba(255,255,255,.22);
+  transform: rotate(7deg);
+}
+.seal img { width: 44px; height: auto; filter: brightness(0) opacity(.42); }
 
-/* Sections */
-section { display: grid; gap: 24px; }
-section > header { display: grid; gap: 6px; }
-section h2 { font-size: 34px; line-height: 1.15; }
+/* ——— Sections ——— */
+section { padding-top: 96px; }
+.title { text-align: center; margin-bottom: 34px; }
+.title p { font-family: var(--fell); font-style: italic; font-size: 20px; color: var(--gold); }
+.title h2 { font-size: clamp(34px, 9vw, 44px); line-height: 1.1; margin-top: 2px; }
+.title::after {
+  content: ""; display: block; height: 9px; width: 150px; margin: 18px auto 0;
+  background:
+    linear-gradient(to right, transparent, var(--gold-dim)) left center / 62px 1px no-repeat,
+    linear-gradient(to left, transparent, var(--gold-dim)) right center / 62px 1px no-repeat;
+}
+.title { position: relative; }
+.title::before {
+  content: ""; position: absolute; left: 50%; bottom: 1px; width: 7px; height: 7px; margin-left: -3.5px;
+  background: var(--gold); transform: rotate(45deg);
+}
 
-.facts { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); background: var(--moss); }
-.fact { padding: 20px 22px; display: grid; gap: 4px; align-content: start; }
-.fact:nth-child(odd) { border-right: 1px solid var(--line); }
-.fact:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
-.fact .k { font-family: var(--caps); letter-spacing: 0.16em; font-size: 13px; color: var(--ash); }
-.fact .v { font-family: var(--display); font-size: 25px; line-height: 1.2; font-weight: 600; font-variant-numeric: lining-nums; }
-.fact .n { font-size: 14.5px; color: var(--ash); line-height: 1.5; }
-.fact.urgent .v { color: #d9574f; }
+/* ——— Arcade ——— */
+.arcade-sec { padding-top: 110px; }
+.arcade {
+  display: flex; gap: 14px; align-items: flex-end;
+  overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  padding: 6px 22px 4px; scroll-padding: 0 22px; scrollbar-width: none;
+}
+.arcade::-webkit-scrollbar { display: none; }
+.arcade figure { flex: 0 0 58vw; max-width: 236px; scroll-snap-align: center; text-align: center; }
+.arch { padding: 5px; border: 1px solid var(--gold-dim); border-radius: 999px 999px 0 0; }
+.arch img { display: block; width: 100%; aspect-ratio: 3 / 5; object-fit: cover; border-radius: 999px 999px 0 0; filter: sepia(.2) saturate(.85) contrast(1.05) brightness(.92); }
+.arcade figcaption { margin-top: 12px; font-family: var(--fell); font-style: italic; font-size: 20px; color: var(--bone); }
+.arcade figcaption i { color: var(--gold); margin-right: .25em; }
+.hint { text-align: center; margin-top: 14px; font-style: italic; font-size: 16px; color: var(--ash); }
+@media (min-width: 900px) {
+  .arcade { justify-content: center; overflow: visible; gap: 20px; max-width: 1120px; margin: 0 auto; }
+  .arcade figure { flex: 1 1 0; max-width: 200px; }
+  .arcade figure:nth-child(odd) { padding-bottom: 28px; }
+  .hint { display: none; }
+}
 
-.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: step; }
-.steps li { display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start; padding: 20px 22px; border: 1px solid var(--line); background: var(--moss); counter-increment: step; }
-.steps li::before { content: counter(step, upper-roman); font-family: var(--display); font-size: 30px; color: var(--gold); line-height: 1; padding-top: 2px; }
-.steps h3 { font-size: 23px; margin-bottom: 6px; }
-.steps p + p { margin-top: 8px; }
-.btn { display: inline-block; margin-top: 12px; padding: 11px 22px; border: 1px solid var(--gold); color: var(--night); background: var(--gold); font-family: var(--caps); letter-spacing: 0.14em; font-size: 15px; text-decoration: none; cursor: pointer; }
-.btn:hover { background: #d4b273; }
-.btn.ghost { background: transparent; color: var(--gold); }
-.btn.soon { cursor: default; opacity: .7; }
-.btn.ghost:not(.soon):hover { background: rgba(191,157,95,0.12); }
-.wero { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 10px; }
-.wero code { font-family: var(--display); font-size: 26px; font-weight: 600; letter-spacing: 0.04em; color: var(--bone); font-variant-numeric: tabular-nums; }
-.wero .btn { margin-top: 0; padding: 7px 14px; font-size: 13px; }
-.label { font-size: 15px; color: var(--ash); }
-.label b { color: var(--bone); font-weight: 500; }
-.seal-note { border-left: 2px solid var(--blood); padding: 4px 0 4px 16px; font-style: italic; color: var(--bone); }
+/* ——— L'essentiel : registre à points de conduite ——— */
+.ledger > div { padding: 18px 0; border-bottom: 1px solid var(--hair); }
+.ledger > div:first-child { border-top: 1px solid var(--hair); }
+.ledger .row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 10px; font-family: var(--fell); }
+.ledger dt { font-style: italic; font-size: 21px; color: var(--gold); }
+.ledger .dots { flex: 1 1 24px; min-width: 24px; border-bottom: 2px dotted var(--gold-dim); transform: translateY(-5px); }
+.ledger dd.v { font-family: var(--text); font-variant-numeric: lining-nums; font-size: 24px; line-height: 1.25; margin-left: auto; text-align: right; }
+.ledger dd.n { margin-top: 6px; font-size: 17.5px; line-height: 1.45; color: var(--ash); }
+.ledger .urgent dd.v { color: var(--ember); }
 
+/* ——— Confirmer ——— */
+.steps { list-style: none; margin: 0; padding: 0; }
+.steps > li { padding: 26px 0; border-top: 1px solid var(--hair); }
+.steps > li:last-child { border-bottom: 1px solid var(--hair); }
+.steps h3 { font-size: 27px; line-height: 1.2; margin-bottom: 8px; }
+.steps h3 i { color: var(--gold); margin-right: .3em; }
+.steps p + p { margin-top: 10px; }
+.steps b, .nb b { font-weight: 500; color: #fff6e2; }
+.steps .small { font-size: 17.5px; color: var(--ash); }
+.btn {
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  min-height: 58px; margin-top: 18px; padding: 12px 22px;
+  background: linear-gradient(180deg, #d3b379, #b8955a);
+  color: #17120a; text-decoration: none;
+  font-family: var(--fell); font-size: 23px; line-height: 1.15;
+  outline: 1px solid rgba(23,18,10,.45); outline-offset: -6px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.5);
+  -webkit-tap-highlight-color: transparent;
+  transition: filter .15s, transform .15s;
+}
+.btn:active { transform: scale(.985); filter: brightness(.92); }
+@media (hover: hover) { .btn:hover { filter: brightness(1.08); } }
+.btn:focus-visible { outline: 2px solid var(--bone); outline-offset: 3px; }
+.nb { margin-top: 24px; font-size: 18.5px; }
+.nb + .nb { margin-top: 12px; }
+.nb i:first-child { font-family: var(--fell); color: var(--gold); margin-right: .2em; }
 
-
-/* FAQ */
-.faq { display: grid; }
-.faq-group { font-family: var(--caps); font-weight: 500; letter-spacing: 0.18em; font-size: 14px; color: var(--gold); margin: 28px 0 0; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
-.faq-group:first-child { margin-top: 0; }
-details { border-bottom: 1px solid var(--line); }
-summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; padding: 18px 2px; font-family: var(--display); font-size: 22px; font-weight: 500; line-height: 1.3; }
+/* ——— Questions ——— */
+.faq h3 { font-style: italic; font-size: 25px; color: var(--gold); margin: 40px 0 6px; }
+.faq h3:first-child { margin-top: 0; }
+details { border-bottom: 1px solid var(--hair); }
+summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  min-height: 60px; padding: 14px 0;
+  font-family: var(--fell); font-size: 21.5px; line-height: 1.25;
+  -webkit-tap-highlight-color: transparent;
+}
 summary::-webkit-details-marker { display: none; }
-summary::after { content: "+"; color: var(--gold); font-size: 24px; line-height: 1; flex: none; transition: transform .2s; }
-details[open] summary::after { transform: rotate(45deg); }
-details > div { padding: 0 2px 20px; display: grid; gap: 10px; color: #d3ccbc; max-width: 36em; }
+summary::after {
+  content: ""; flex: none; width: 9px; height: 9px; margin: 0 6px 4px 0;
+  border-right: 1.5px solid var(--gold); border-bottom: 1.5px solid var(--gold);
+  transform: rotate(45deg); transition: transform .2s;
+}
+details[open] summary::after { transform: translateY(4px) rotate(-135deg); }
+details[open] summary { color: #fff6e2; }
+details > div { padding: 0 0 22px; color: #d6cdb9; }
+details > div p + p { margin-top: 10px; }
 
-footer { text-align: center; display: grid; gap: 14px; justify-items: center; color: var(--ash); font-size: 15px; }
-footer .mark { width: 40px; height: auto; opacity: .85; }
+/* ——— Pied ——— */
+footer { text-align: center; padding: 100px 22px calc(64px + env(safe-area-inset-bottom)); color: var(--ash); }
+footer img { width: 54px; height: auto; opacity: .9; }
+footer .motto { margin-top: 14px; font-family: var(--fell); font-style: italic; font-size: 24px; color: var(--gold); }
+footer .fr { font-style: italic; }
+footer .note { margin-top: 26px; font-size: 16.5px; }
 
-
-/* Galerie : cartes flottantes, du jour à la nuit */
-.gallery { width: min(940px, calc(100vw - 32px)); margin-left: 50%; transform: translateX(-50%); }
-.gallery-row { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; padding: 24px 0; }
-.gallery figure { margin: 0; width: 164px; padding: 7px 7px 10px; background: var(--moss); border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(0,0,0,.55); transform: translateY(var(--y)) rotate(var(--r)); animation: drift 7s ease-in-out var(--d) infinite; display: grid; gap: 8px; }
-.gallery img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; filter: sepia(.18) saturate(.85) contrast(1.05) brightness(.95); }
-.gallery figcaption { font-family: var(--caps); letter-spacing: .16em; font-size: 12.5px; color: var(--ash); text-align: center; }
-@keyframes drift { 0%, 100% { transform: translateY(var(--y)) rotate(var(--r)); } 50% { transform: translateY(calc(var(--y) - 9px)) rotate(calc(var(--r) * .7)); } }
-@media (max-width: 720px) { .gallery-row { gap: 14px; } .gallery figure { width: calc(50% - 10px); max-width: 190px; } .gallery figure:last-child { width: calc(50% - 10px); } }
-@media (prefers-reduced-motion: reduce) { .gallery figure { animation: none; } }
-
-@media (max-width: 520px) {
-  main { gap: 60px; padding-top: 40px; }
-  .facts { grid-template-columns: 1fr; }
-  .fact:nth-child(odd) { border-right: 0; }
-  .fact { border-bottom: 1px solid var(--line); }
-  .fact:last-child { border-bottom: 0; }
-  .steps li { grid-template-columns: 1fr; gap: 8px; }
+@media (min-width: 700px) {
+  body { font-size: 20px; }
+  .letter { padding: 60px 56px 92px; font-size: 21px; }
+  .btn { display: inline-flex; padding: 12px 44px; }
+  section { padding-top: 120px; }
+}
+@media (max-width: 350px) {
+  .letter { padding: 40px 22px 74px; font-size: 19px; }
+  .ledger dd.v { font-size: 22px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
 <body>
+
+<header class="hero">
+  <img class="blason" src="logo.png" width="560" height="707" alt="Blason de l'Ordre de Montfaucon : une chouette, une épée et un M, sous la devise Qui scit, tacet">
+  <h1><small>Ordre de</small><span>Montfaucon</span></h1>
+  <p class="sub">Quatre jours, trois nuits, une année qui bascule.</p>
+  <p class="when">Du <b>31 décembre</b> au <b>3 janvier</b>, à deux heures de Paris</p>
+</header>
+
 <main>
 
-  <header class="hero">
-    <img class="seal" src="logo.png" width="560" height="707" alt="Blason de l'Ordre de Montfaucon : une chouette, une épée et un M, sous la devise Qui scit, tacet">
-    <div class="eyebrow">Convocation</div>
-    <h1>Ordre de Montfaucon</h1>
-    <p class="sub">Quatre jours, trois nuits, une année qui bascule.</p>
-    <div class="letter">
-      <p>Depuis deux siècles, l'Ordre se réunit une fois l'an, loin des regards, à l'heure où l'année change de main.</p>
-      <p>Cette fois, votre nom a été prononcé.</p>
+  <div class="letter-wrap">
+    <article class="letter" aria-label="Convocation">
+      <p class="head">Convocation</p>
+      <p class="first">Depuis deux siècles, l'Ordre se réunit une fois l'an, loin des regards, à l'heure où l'année change de main.</p>
+      <p class="lone">Cette fois, votre nom a été prononcé.</p>
       <p>Vous serez reçu dans un domaine retiré, à quelques heures de Paris. Vous y croiserez des visages familiers. Ne vous y fiez pas&nbsp;: certains membres servent d'autres intérêts que ceux de l'Ordre. Avant que l'année ne s'achève, il faudra les avoir démasqués.</p>
       <p>Le reste ne s'écrit pas.</p>
       <p class="sig">Le Secrétaire de l'Ordre</p>
-    </div>
-    <p class="motto">Qui scit, tacet · Qui sait se tait</p>
-  </header>
+      <span class="seal" aria-hidden="true"><img src="logo-small.png" width="120" height="152" alt=""></span>
+    </article>
+  </div>
 
-
-  <section class="gallery" aria-label="L'univers de l'Ordre">
-    <div class="gallery-row">
-      <figure style="--r:-4deg; --y:18px; --d:0s"><img src="g-domaine.jpg" alt="Une allée bordée d'arbres mène à un manoir en pierre" loading="lazy"><figcaption>L'arrivée</figcaption></figure>
-      <figure style="--r:3deg; --y:-6px; --d:1.2s"><img src="g-chasse.jpg" alt="Des chasseurs en tweed et leurs chiens devant une colonnade" loading="lazy"><figcaption>Le jour</figcaption></figure>
-      <figure style="--r:-2deg; --y:24px; --d:2.4s"><img src="g-escalier.jpg" alt="Une silhouette encapuchonnée gravit un escalier bordé de bougies" loading="lazy"><figcaption>La nuit</figcaption></figure>
-      <figure style="--r:4deg; --y:-10px; --d:0.6s"><img src="g-conseil.jpg" alt="Des membres masqués en cape forment un cercle sous des lustres" loading="lazy"><figcaption>Le conseil</figcaption></figure>
-      <figure style="--r:-3deg; --y:12px; --d:1.8s"><img src="g-feu.jpg" alt="Des silhouettes dansent autour d'un feu dans une forêt brumeuse" loading="lazy"><figcaption>Le feu</figcaption></figure>
+  <section class="arcade-sec" aria-label="L'univers de l'Ordre">
+    <div class="arcade">
+      <figure><div class="arch"><img src="g-domaine.jpg" alt="Une allée bordée d'arbres mène à un manoir en pierre" loading="lazy"></div><figcaption><i>i.</i> L'arrivée</figcaption></figure>
+      <figure><div class="arch"><img src="g-chasse.jpg" alt="Des chasseurs en tweed et leurs chiens devant une colonnade" loading="lazy"></div><figcaption><i>ii.</i> Le jour</figcaption></figure>
+      <figure><div class="arch"><img src="g-escalier.jpg" alt="Une silhouette encapuchonnée gravit un escalier bordé de bougies" loading="lazy"></div><figcaption><i>iii.</i> La nuit</figcaption></figure>
+      <figure><div class="arch"><img src="g-conseil.jpg" alt="Des membres masqués en cape forment un cercle sous des lustres" loading="lazy"></div><figcaption><i>iv.</i> Le conseil</figcaption></figure>
+      <figure><div class="arch"><img src="g-feu.jpg" alt="Des silhouettes dansent autour d'un feu dans une forêt brumeuse" loading="lazy"></div><figcaption><i>v.</i> Le feu</figcaption></figure>
     </div>
+    <p class="hint" aria-hidden="true">Du jour à la nuit, faites défiler</p>
   </section>
 
   <section aria-labelledby="essentiel">
-    <header>
-      <div class="eyebrow">Ce qu'il faut savoir</div>
-      <h2 id="essentiel">L'essentiel</h2>
-    </header>
-    <div class="facts">
-      <div class="fact">
-        <span class="k">Dates</span>
-        <span class="v">31 déc. → 3 janv.</span>
-        <span class="n">Arrivée le jeudi 31 à partir de 19&nbsp;h. Départ le dimanche 3 en début d'après-midi.</span>
-      </div>
-      <div class="fact">
-        <span class="k">Lieu</span>
-        <span class="v">À 2&nbsp;h de Paris</span>
-        <span class="n">Un domaine dans un rayon de deux heures. L'adresse est communiquée aux membres confirmés.</span>
-      </div>
-      <div class="fact">
-        <span class="k">Contribution</span>
-        <span class="v">400&nbsp;€ par personne</span>
-        <span class="n">En deux versements de 200&nbsp;€. Tout compris, hors transport, plus une charge à assumer pendant le séjour.</span>
-      </div>
-      <div class="fact urgent">
-        <span class="k">Réponse avant le</span>
-        <span class="v">Mercredi 18 nov.</span>
-        <span class="n">À minuit&nbsp;: inscription et premier versement de 200&nbsp;€.</span>
-      </div>
+    <div class="col">
+      <header class="title">
+        <p>Ce qu'il faut savoir</p>
+        <h2 id="essentiel">L'essentiel</h2>
+      </header>
+      <dl class="ledger">
+        <div>
+          <div class="row"><dt>Dates</dt><span class="dots"></span><dd class="v">31 déc. → 3 janv.</dd></div>
+          <dd class="n">Arrivée le jeudi 31 à partir de 19&nbsp;h. Départ le dimanche 3 en début d'après-midi.</dd>
+        </div>
+        <div>
+          <div class="row"><dt>Lieu</dt><span class="dots"></span><dd class="v">à 2&nbsp;h de Paris</dd></div>
+          <dd class="n">Un domaine dans un rayon de deux heures. L'adresse est communiquée aux membres confirmés.</dd>
+        </div>
+        <div>
+          <div class="row"><dt>Contribution</dt><span class="dots"></span><dd class="v">400&nbsp;€ par personne</dd></div>
+          <dd class="n">En deux versements de 200&nbsp;€. Tout compris, hors transport, plus une charge à assumer pendant le séjour.</dd>
+        </div>
+        <div class="urgent">
+          <div class="row"><dt>Réponse</dt><span class="dots"></span><dd class="v">avant le mercredi 18&nbsp;nov.</dd></div>
+          <dd class="n">À minuit&nbsp;: inscription et premier versement de 200&nbsp;€.</dd>
+        </div>
+      </dl>
     </div>
   </section>
 
   <section aria-labelledby="confirmer">
-    <header>
-      <div class="eyebrow">Rejoindre l'Ordre</div>
-      <h2 id="confirmer">Pour confirmer votre présence</h2>
-    </header>
-    <ol class="steps">
-      <li>
-        <div>
-          <h3>Remplissez le registre</h3>
+    <div class="col">
+      <header class="title">
+        <p>Rejoindre l'Ordre</p>
+        <h2 id="confirmer">Confirmer votre présence</h2>
+      </header>
+      <ol class="steps">
+        <li>
+          <h3><i>I.</i> Remplissez le registre</h3>
           <p>Votre nom, votre adresse postale, votre éventuel invité, votre préférence de couchage et la charge que vous prendrez.</p>
-          <!-- Registre : remplacer par <a class="btn" href="URL">Ouvrir le registre</a> -->
-          <span class="btn ghost soon" aria-disabled="true">Le registre ouvre bientôt</span>
-        </div>
-      </li>
-      <li>
-        <div>
-          <h3>Réglez votre contribution par Wero</h3>
+          <a class="btn" href="https://gregoire-thibaud.notion.site/de69bc7065644ed49cb37f1b41de4d1f?pvs=105" target="_blank" rel="noopener">Ouvrir le registre</a>
+        </li>
+        <li>
+          <h3><i>II.</i> Réglez votre contribution par Wero</h3>
           <p><b>200&nbsp;€ avant le mercredi 18 novembre</b>, puis <b>200&nbsp;€ avant le 1er décembre</b>.</p>
-          <p>Le numéro Wero figure dans votre e-mail d'invitation.</p>
-          <p class="label">Destinataire&nbsp;: <b>Grégoire Thibaud</b>. Motif&nbsp;: <b>MONTFAUCON – Prénom Nom</b>. Un virement par personne, invité compris.</p>
-        </div>
-      </li>
-    </ol>
-    <p class="seal-note">Seul le premier versement vaut confirmation. Ces acomptes nous permettent de réserver le domaine&nbsp;; sans eux, rien ne peut être retenu. Les places sont limitées.</p>
-    <p class="seal-note">Tout le reste vous parviendra plus tard, par courrier, à l'adresse indiquée dans le registre. Surveillez votre pigeonnier.</p>
-  </section>
-
-
-
-  <section aria-labelledby="questions">
-    <header>
-      <div class="eyebrow">Questions</div>
-      <h2 id="questions">Ce que vous pouvez savoir</h2>
-    </header>
-    <div class="faq">
-      <h3 class="faq-group">L'expérience</h3>
-      <details>
-        <summary>Pourquoi pas un réveillon ordinaire&nbsp;?</summary>
-        <div><p>D'ordinaire, le 31 décembre est une soirée comme une autre, avec un compte à rebours en plus. On dîne, on trinque à minuit, on rentre. Le lendemain, il n'en reste presque rien.</p><p>Cette année, nous vous proposons autre chose&nbsp;: quatre jours passés dans un seul et même jeu. Vous n'y serez pas spectateur. Chaque repas, chaque conversation, chaque nuit fait partie de l'intrigue. Des alliances se nouent, des soupçons montent, et personne ne sait vraiment qui est qui.</p><p>Vous n'avez jamais vécu de Nouvel An comme celui-ci. C'est pour cela que nous l'organisons.</p></div>
-      </details>
-      <details>
-        <summary>Qui se cache derrière l'Ordre&nbsp;?</summary>
-        <div><p>Grégoire, Jean et Loïc, trois colocataires parisiens. Nous avons imaginé l'Ordre, écrit le jeu et organisons le séjour de bout en bout.</p><p>Pour le reste, l'Ordre préfère qu'on parle de lui le moins possible.</p></div>
-      </details>
-      <details>
-        <summary>Faut-il se préparer&nbsp;?</summary>
-        <div><p>Non. Il n'y a ni règles à apprendre ni rôle à préparer à l'avance. Vous découvrirez le jeu sur place.</p></div>
-      </details>
-      <details>
-        <summary>Puis-je venir avec quelqu'un&nbsp;?</summary>
-        <div><p>Oui, et nous vous y encourageons. L'Ordre grandit par cooptation&nbsp;: amenez une personne que les autres ne connaissent pas encore.</p><p>Votre invité remplit le registre et règle sa propre contribution, avec les mêmes échéances que vous.</p></div>
-      </details>
-      <h3 class="faq-group">Contribution</h3>
-      <details>
-        <summary>Que comprennent les 400&nbsp;€&nbsp;?</summary>
-        <div><p>Les trois nuits d'hébergement, tous les repas, les boissons, le réveillon du 31 et le jeu. Le transport n'est pas inclus.</p><p>400&nbsp;€ est un plafond que nous nous engageons à respecter.</p></div>
-      </details>
-      <details>
-        <summary>Pourquoi deux versements&nbsp;?</summary>
-        <div><p>Le premier acompte de 200&nbsp;€, avant le mercredi 18 novembre, confirme votre place et nous permet de réserver le domaine. Le second, avant le 1er décembre, couvre les repas, les boissons et le reste du séjour.</p></div>
-      </details>
-      <details>
-        <summary>Qu'est-ce que la charge&nbsp;?</summary>
-        <div><p>En plus de sa contribution, chaque membre prend en main une part de la vie du domaine, seul ou en binôme&nbsp;: préparer ou cuisiner un repas, animer une activité, organiser une partie des trajets, installer le décor.</p><p>Vous la choisissez dans le registre.</p></div>
-      </details>
-      <h3 class="faq-group">Lieu et séjour</h3>
-      <details>
-        <summary>Où se trouve le domaine&nbsp;?</summary>
-        <div><p>Dans un rayon d'environ deux heures autour de Paris. Nous le réservons dès que les premiers acomptes sont réunis, puis nous envoyons l'adresse aux membres confirmés.</p></div>
-      </details>
-      <details>
-        <summary>Comment s'y rendre&nbsp;?</summary>
-        <div><p>Avec l'adresse, nous proposons des options en train et en voiture. Les covoiturages sont encouragés&nbsp;: indiquez dans le registre si vous avez des places à offrir ou si vous en cherchez une.</p></div>
-      </details>
-      <details>
-        <summary>Comment se passe le couchage&nbsp;?</summary>
-        <div><p>Indiquez dans le registre si vous préférez partager un lit (précisez avec qui) ou dormir dans un lit individuel. Nous répartissons les chambres en fonction des réponses.</p></div>
-      </details>
-      <details>
-        <summary>Tenue, programme&nbsp;: quand saurai-je le reste&nbsp;?</summary>
-        <div><p>Par courrier postal, dans les semaines qui précèdent le séjour. C'est pour cela que le registre demande votre adresse. Surveillez votre pigeonnier.</p></div>
-      </details>
-      <h3 class="faq-group">Imprévus</h3>
-      <details>
-        <summary>Et si je ne peux plus venir&nbsp;?</summary>
-        <div><p>Votre place se cède, elle ne se rembourse pas. À vous de trouver quelqu'un pour la reprendre&nbsp;: il vous règle directement, et vous nous prévenez pour que nous mettions le registre à jour.</p></div>
-      </details>
-      <details>
-        <summary>Et si le séjour n'a pas lieu&nbsp;?</summary>
-        <div><p>Si nous ne pouvons pas réserver de domaine, tous les acomptes sont intégralement remboursés.</p></div>
-      </details>
-      <details>
-        <summary>Une autre question&nbsp;?</summary>
-        <div><p>Répondez simplement à l'e-mail d'invitation.</p></div>
-      </details>
+          <p>Le numéro Wero figure dans votre e‑mail d'invitation.</p>
+          <p class="small">Destinataire&nbsp;: Grégoire Thibaud. Motif&nbsp;: MONTFAUCON – Prénom Nom. Un virement par personne, invité compris.</p>
+        </li>
+      </ol>
+      <p class="nb"><i>Nota bene.</i> Seul le premier versement vaut confirmation. Ces acomptes nous permettent de réserver le domaine&nbsp;; sans eux, rien ne peut être retenu. Les places sont limitées.</p>
+      <p class="nb">Tout le reste vous parviendra plus tard, par courrier, à l'adresse indiquée dans le registre. Surveillez votre pigeonnier.</p>
     </div>
   </section>
 
-  <footer>
-    <div class="rule"><img class="mark" src="logo-small.png" width="120" height="152" alt=""></div>
-    <p>Cette convocation est nominative. Merci de ne pas la diffuser.</p>
-  </footer>
+  <section aria-labelledby="questions">
+    <div class="col">
+      <header class="title">
+        <p>Questions</p>
+        <h2 id="questions">Ce que vous pouvez savoir</h2>
+      </header>
+      <div class="faq">
+        <h3>L'expérience</h3>
+        <details>
+          <summary>Pourquoi pas un réveillon ordinaire&nbsp;?</summary>
+          <div><p>D'ordinaire, le 31 décembre est une soirée comme une autre, avec un compte à rebours en plus. On dîne, on trinque à minuit, on rentre. Le lendemain, il n'en reste presque rien.</p><p>Cette année, nous vous proposons autre chose&nbsp;: quatre jours passés dans un seul et même jeu. Vous n'y serez pas spectateur. Chaque repas, chaque conversation, chaque nuit fait partie de l'intrigue. Des alliances se nouent, des soupçons montent, et personne ne sait vraiment qui est qui.</p><p>Vous n'avez jamais vécu de Nouvel An comme celui-ci. C'est pour cela que nous l'organisons.</p></div>
+        </details>
+        <details>
+          <summary>Qui se cache derrière l'Ordre&nbsp;?</summary>
+          <div><p>Grégoire, Jean et Loïc, trois colocataires parisiens. Nous avons imaginé l'Ordre, écrit le jeu et organisons le séjour de bout en bout.</p><p>Pour le reste, l'Ordre préfère qu'on parle de lui le moins possible.</p></div>
+        </details>
+        <details>
+          <summary>Faut-il se préparer&nbsp;?</summary>
+          <div><p>Non. Il n'y a ni règles à apprendre ni rôle à préparer à l'avance. Vous découvrirez le jeu sur place.</p></div>
+        </details>
+        <details>
+          <summary>Puis-je venir avec quelqu'un&nbsp;?</summary>
+          <div><p>Oui, et nous vous y encourageons. L'Ordre grandit par cooptation&nbsp;: amenez une personne que les autres ne connaissent pas encore.</p><p>Votre invité remplit le registre et règle sa propre contribution, avec les mêmes échéances que vous.</p></div>
+        </details>
+        <h3>Contribution</h3>
+        <details>
+          <summary>Que comprennent les 400&nbsp;€&nbsp;?</summary>
+          <div><p>Les trois nuits d'hébergement, tous les repas, les boissons, le réveillon du 31 et le jeu. Le transport n'est pas inclus.</p><p>400&nbsp;€ est un plafond que nous nous engageons à respecter.</p></div>
+        </details>
+        <details>
+          <summary>Pourquoi deux versements&nbsp;?</summary>
+          <div><p>Le premier acompte de 200&nbsp;€, avant le mercredi 18 novembre, confirme votre place et nous permet de réserver le domaine. Le second, avant le 1er décembre, couvre les repas, les boissons et le reste du séjour.</p></div>
+        </details>
+        <details>
+          <summary>Qu'est-ce que la charge&nbsp;?</summary>
+          <div><p>En plus de sa contribution, chaque membre prend en main une part de la vie du domaine, seul ou en binôme&nbsp;: préparer ou cuisiner un repas, animer une activité, organiser une partie des trajets, installer le décor.</p><p>Vous la choisissez dans le registre.</p></div>
+        </details>
+        <h3>Lieu et séjour</h3>
+        <details>
+          <summary>Où se trouve le domaine&nbsp;?</summary>
+          <div><p>Dans un rayon d'environ deux heures autour de Paris. Nous le réservons dès que les premiers acomptes sont réunis, puis nous envoyons l'adresse aux membres confirmés.</p></div>
+        </details>
+        <details>
+          <summary>Comment s'y rendre&nbsp;?</summary>
+          <div><p>Avec l'adresse, nous proposons des options en train et en voiture. Les covoiturages sont encouragés&nbsp;: indiquez dans le registre si vous avez des places à offrir ou si vous en cherchez une.</p></div>
+        </details>
+        <details>
+          <summary>Comment se passe le couchage&nbsp;?</summary>
+          <div><p>Indiquez dans le registre si vous préférez partager un lit (précisez avec qui) ou dormir dans un lit individuel. Nous répartissons les chambres en fonction des réponses.</p></div>
+        </details>
+        <details>
+          <summary>Tenue, programme&nbsp;: quand saurai-je le reste&nbsp;?</summary>
+          <div><p>Par courrier postal, dans les semaines qui précèdent le séjour. C'est pour cela que le registre demande votre adresse. Surveillez votre pigeonnier.</p></div>
+        </details>
+        <h3>Imprévus</h3>
+        <details>
+          <summary>Et si je ne peux plus venir&nbsp;?</summary>
+          <div><p>Votre place se cède, elle ne se rembourse pas. À vous de trouver quelqu'un pour la reprendre&nbsp;: il vous règle directement, et vous nous prévenez pour que nous mettions le registre à jour.</p></div>
+        </details>
+        <details>
+          <summary>Et si le séjour n'a pas lieu&nbsp;?</summary>
+          <div><p>Si nous ne pouvons pas réserver de domaine, tous les acomptes sont intégralement remboursés.</p></div>
+        </details>
+        <details>
+          <summary>Une autre question&nbsp;?</summary>
+          <div><p>Répondez simplement à l'e‑mail d'invitation.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
 
 </main>
+
+<footer>
+  <img src="logo-small.png" width="120" height="152" alt="">
+  <p class="motto">Qui scit, tacet</p>
+  <p class="fr">Qui sait se tait</p>
+  <p class="note">Cette convocation est nominative. Merci de ne pas la diffuser.</p>
+</footer>
+
 </body>
 </html>
