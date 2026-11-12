@@ -98,7 +98,7 @@ a { color: var(--brass); }
 section { padding-top: 96px; }
 .title { margin-bottom: 30px; }
 .title p { font-family: var(--serif); font-weight: 600; font-size: 19px; letter-spacing: .03em; color: var(--brass); }
-.title h2 { font-size: clamp(36px, 9.6vw, 50px); line-height: 1.08; margin-top: 8px; }
+.title h2 { font-size: clamp(36px, 9.6vw, 50px); line-height: 1.08; }
 
 /* ——— Images : du jour à la nuit ——— */
 .strip-sec { padding-top: 104px; }
@@ -116,16 +116,21 @@ section { padding-top: 96px; }
 }
 
 /* ——— L'essentiel ——— */
-.ledger { margin: 0; }
-.ledger > div { padding: 18px 0 20px; border-bottom: 1px solid var(--hair); }
-.ledger > div:first-child { border-top: 1px solid var(--hair); }
+.ledger { margin: 0; display: grid; gap: 10px; }
+.ledger > div {
+  padding: 16px 18px 18px; border-radius: 10px;
+  background: linear-gradient(180deg, rgba(230,223,207,.065), rgba(230,223,207,.025));
+  border: 1px solid rgba(230,223,207,.09);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
 .ledger .row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 10px; font-family: var(--serif); }
 .ledger dt { font-weight: 600; font-size: 20px; letter-spacing: .02em; color: var(--brass); }
-.ledger .dots { flex: 1 1 24px; min-width: 24px; border-bottom: 1px dotted rgba(184,148,92,.55); transform: translateY(-5px); }
+.ledger .dots { flex: 1 1 16px; min-width: 16px; border-bottom: 1px dotted rgba(184,148,92,.55); transform: translateY(-5px); }
 .ledger dd { margin: 0; }
 .ledger dd.v { font-weight: 500; font-size: 26px; line-height: 1.2; color: var(--os); margin-left: auto; text-align: right; font-variant-numeric: lining-nums; }
 .ledger dd.n { margin-top: 6px; font-size: 15px; line-height: 1.5; color: var(--ash); }
-.ledger .urgent dd.v { background: var(--bordeaux); padding: 1px 10px 3px; }
+.ledger .urgent dd.v { background: var(--bordeaux); padding: 1px 10px 3px; border-radius: 4px; }
 
 /* ——— Confirmer ——— */
 .steps { list-style: none; margin: 0; padding: 0; }
@@ -149,8 +154,6 @@ section { padding-top: 96px; }
 .after p + p { margin-top: 10px; }
 
 /* ——— Questions ——— */
-.faq h3 { font-weight: 600; font-size: 20px; letter-spacing: .03em; color: var(--brass); margin: 40px 0 4px; }
-.faq h3:first-child { margin-top: 0; }
 details { border-bottom: 1px solid var(--hair); }
 summary {
   list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 18px;
@@ -162,10 +165,11 @@ summary::-webkit-details-marker { display: none; }
 summary::after {
   content: ""; flex: none; width: 8px; height: 8px; margin: 0 6px 4px 0;
   border-right: 1px solid var(--brass); border-bottom: 1px solid var(--brass);
-  transform: rotate(45deg); transition: transform .2s;
+  transform: rotate(45deg); transition: transform .3s;
 }
-details[open] summary::after { transform: translateY(4px) rotate(-135deg); }
-details > div { padding: 0 0 22px; max-width: 34em; }
+details.on summary::after { transform: translateY(4px) rotate(-135deg); }
+details > div { overflow: hidden; max-width: 34em; color: #A8A395; }
+details > div p:last-child { padding-bottom: 22px; }
 details > div p + p { margin-top: 10px; }
 
 /* ——— Pied ——— */
@@ -222,7 +226,6 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
   <section aria-labelledby="essentiel">
     <div class="col">
       <header class="title">
-        <p>Ce qu'il faut savoir</p>
         <h2 id="essentiel">L'essentiel</h2>
       </header>
       <dl class="ledger">
@@ -235,8 +238,8 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
           <dd class="n">Un domaine dans un rayon de deux heures. L'adresse est communiquée aux membres confirmés.</dd>
         </div>
         <div>
-          <div class="row"><dt>Contribution</dt><span class="dots"></span><dd class="v">400&nbsp;€ par personne</dd></div>
-          <dd class="n">En deux versements de 200&nbsp;€. Tout compris, hors transport, plus une charge à assumer pendant le séjour.</dd>
+          <div class="row"><dt>Contribution</dt><span class="dots"></span><dd class="v">400&nbsp;€</dd></div>
+          <dd class="n">Par personne, en deux versements de 200&nbsp;€, par Wero ou Sumeria. Tout compris, hors transport, plus une charge à assumer pendant le séjour.</dd>
         </div>
         <div class="urgent">
           <div class="row"><dt>Réponse</dt><span class="dots"></span><dd class="v">avant le 18&nbsp;nov.</dd></div>
@@ -249,7 +252,6 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
   <section aria-labelledby="confirmer">
     <div class="col">
       <header class="title">
-        <p>Rejoindre l'Ordre</p>
         <h2 id="confirmer">Confirmer votre présence</h2>
       </header>
       <ol class="steps">
@@ -264,10 +266,10 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
         <li>
           <span class="num" aria-hidden="true">2</span>
           <div>
-            <h3>Réglez votre contribution par Wero</h3>
+            <h3>Réglez votre contribution par Wero ou Sumeria</h3>
             <p><b>200&nbsp;€ avant le mercredi 18 novembre</b>, puis <b>200&nbsp;€ avant le 1er décembre</b>.</p>
-            <p>Le numéro Wero figure dans votre e‑mail d'invitation.</p>
-            <p class="small">Destinataire&nbsp;: Grégoire Thibaud. Motif&nbsp;: MONTFAUCON – Prénom Nom. Un virement par personne, invité compris.</p>
+            <p>Par Wero ou par Sumeria, au choix. Le numéro figure dans votre e‑mail d'invitation.</p>
+            <p class="small">Destinataire&nbsp;: Grégoire Thibaud. Motif&nbsp;: MONTFAUCON – Prénom Nom. Un paiement par personne, invité compris.</p>
           </div>
         </li>
       </ol>
@@ -281,18 +283,12 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
   <section aria-labelledby="questions">
     <div class="col">
       <header class="title">
-        <p>Questions</p>
         <h2 id="questions">Ce que vous pouvez savoir</h2>
       </header>
       <div class="faq">
-        <h3>L'expérience</h3>
         <details>
           <summary>Pourquoi pas un réveillon ordinaire&nbsp;?</summary>
           <div><p>D'ordinaire, le 31 décembre est une soirée comme une autre, avec un compte à rebours en plus. On dîne, on trinque à minuit, on rentre. Le lendemain, il n'en reste presque rien.</p><p>Cette année, nous vous proposons autre chose&nbsp;: quatre jours passés dans un seul et même jeu. Vous n'y serez pas spectateur. Chaque repas, chaque conversation, chaque nuit fait partie de l'intrigue. Des alliances se nouent, des soupçons montent, et personne ne sait vraiment qui est qui.</p><p>Vous n'avez jamais vécu de Nouvel An comme celui-ci. C'est pour cela que nous l'organisons.</p></div>
-        </details>
-        <details>
-          <summary>Qui se cache derrière l'Ordre&nbsp;?</summary>
-          <div><p>Grégoire, Jean et Loïc, trois colocataires parisiens. Nous avons imaginé l'Ordre, écrit le jeu et organisons le séjour de bout en bout.</p><p>Pour le reste, l'Ordre préfère qu'on parle de lui le moins possible.</p></div>
         </details>
         <details>
           <summary>Faut-il se préparer&nbsp;?</summary>
@@ -302,7 +298,6 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
           <summary>Puis-je venir avec quelqu'un&nbsp;?</summary>
           <div><p>Oui, et nous vous y encourageons. L'Ordre grandit par cooptation&nbsp;: amenez une personne que les autres ne connaissent pas encore.</p><p>Votre invité remplit le registre et règle sa propre contribution, avec les mêmes échéances que vous.</p></div>
         </details>
-        <h3>Contribution</h3>
         <details>
           <summary>Que comprennent les 400&nbsp;€&nbsp;?</summary>
           <div><p>Les trois nuits d'hébergement, tous les repas, les boissons, le réveillon du 31 et le jeu. Le transport n'est pas inclus.</p><p>400&nbsp;€ est un plafond que nous nous engageons à respecter.</p></div>
@@ -315,7 +310,6 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
           <summary>Qu'est-ce que la charge&nbsp;?</summary>
           <div><p>En plus de sa contribution, chaque membre prend en main une part de la vie du domaine, seul ou en binôme&nbsp;: préparer ou cuisiner un repas, animer une activité, organiser une partie des trajets, installer le décor.</p><p>Vous la choisissez dans le registre.</p></div>
         </details>
-        <h3>Lieu et séjour</h3>
         <details>
           <summary>Où se trouve le domaine&nbsp;?</summary>
           <div><p>Dans un rayon d'environ deux heures autour de Paris. Nous le réservons dès que les premiers acomptes sont réunis, puis nous envoyons l'adresse aux membres confirmés.</p></div>
@@ -332,7 +326,6 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
           <summary>Tenue, programme&nbsp;: quand saurai-je le reste&nbsp;?</summary>
           <div><p>Par courrier postal, dans les semaines qui précèdent le séjour. C'est pour cela que le registre demande votre adresse. Surveillez votre pigeonnier.</p></div>
         </details>
-        <h3>Imprévus</h3>
         <details>
           <summary>Et si je ne peux plus venir&nbsp;?</summary>
           <div><p>Votre place se cède, elle ne se rembourse pas. À vous de trouver quelqu'un pour la reprendre&nbsp;: il vous règle directement, et vous nous prévenez pour que nous mettions le registre à jour.</p></div>
@@ -345,6 +338,10 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
           <summary>Une autre question&nbsp;?</summary>
           <div><p>Répondez simplement à l'e‑mail d'invitation.</p></div>
         </details>
+        <details>
+          <summary>Qui se cache derrière l'Ordre&nbsp;?</summary>
+          <div><p>Grégoire, Jean et Loïc, trois colocataires parisiens. Nous avons imaginé l'Ordre, écrit le jeu et organisons le séjour de bout en bout.</p><p>Pour le reste, l'Ordre préfère qu'on parle de lui le moins possible.</p></div>
+        </details>
       </div>
     </div>
   </section>
@@ -356,6 +353,26 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
   <p class="motto">«&nbsp;Qui sait se tait.&nbsp;»</p>
   <p class="note">Cette convocation est nominative. Merci de ne pas la diffuser.</p>
 </footer>
+
+<script>
+  // Questions : la réponse se révèle à l'ouverture et se retire à la fermeture.
+  document.querySelectorAll(".faq details").forEach(function (d) {
+    var s = d.querySelector("summary"), c = d.querySelector("div"), anim = null;
+    s.addEventListener("click", function (e) {
+      var opening = !d.classList.contains("on");
+      d.classList.toggle("on", opening);
+      if (!c.animate || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      e.preventDefault();
+      if (anim) anim.cancel();
+      if (opening) d.open = true;
+      var h = c.scrollHeight + "px";
+      var shut = { height: "0px", opacity: 0, filter: "blur(8px)", transform: "translateY(-6px)" };
+      var shown = { height: h, opacity: 1, filter: "blur(0px)", transform: "translateY(0)" };
+      anim = c.animate(opening ? [shut, shown] : [shown, shut], { duration: opening ? 520 : 320, easing: "cubic-bezier(.22,.7,.2,1)" });
+      anim.onfinish = function () { anim = null; if (!opening) d.open = false; };
+    });
+  });
+</script>
 
 </body>
 </html>
