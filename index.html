@@ -70,7 +70,6 @@ a { color: var(--brass); }
 .hero h1 span { display: block; font-size: clamp(54px, 15.5vw, 118px); letter-spacing: .02em; }
 .hero .rule { width: 44px; height: 1px; background: var(--brass); margin: 26px 0 22px; }
 .hero .sub { font-family: var(--serif); font-style: italic; font-size: clamp(21px, 5.6vw, 26px); line-height: 1.3; color: var(--os); max-width: 16em; }
-.hero .when { margin-top: 16px; font-size: 14.5px; color: var(--ash); }
 
 /* ——— Le pli ——— */
 .letter-wrap { position: relative; z-index: 1; margin-top: -104px; padding: 0 16px; }
@@ -119,6 +118,9 @@ section { padding-top: 96px; }
 .over { position: relative; z-index: 1; background: var(--night); margin-top: 22vh; }
 .over::before { content: ""; position: absolute; left: 0; right: 0; top: -110px; height: 110px; pointer-events: none; background: linear-gradient(to bottom, rgba(15,19,17,0), var(--night)); }
 .over > section:first-child { padding-top: 40px; }
+/* En bas de page, le contenu s'efface et la galerie réapparaît, toujours en mouvement. */
+.over::after { content: ""; position: absolute; left: 0; right: 0; bottom: -140px; height: 140px; pointer-events: none; background: linear-gradient(to bottom, var(--night), rgba(15,19,17,0)); }
+.reveal { height: calc(50vh + var(--frise) + 40px); height: calc(50svh + var(--frise) + 40px); }
 .drift {
   overflow: hidden;
   -webkit-mask-image: linear-gradient(to right, transparent, #000 14%, #000 86%, transparent);
@@ -188,7 +190,7 @@ details > div p:last-child { padding-bottom: 22px; }
 details > div p + p { margin-top: 10px; }
 
 /* ——— Pied ——— */
-footer { text-align: center; padding: 104px 24px calc(64px + env(safe-area-inset-bottom)); color: var(--ash); }
+footer { text-align: center; padding: 104px 24px 40px; color: var(--ash); }
 footer img { width: 52px; height: auto; }
 footer .motto { margin-top: 16px; font-family: var(--serif); font-style: italic; font-size: 25px; color: var(--os); }
 footer .note { margin-top: 22px; font-size: 13.5px; }
@@ -211,7 +213,6 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
   <h1><small>L'Ordre de</small><span>Montfaucon</span></h1>
   <div class="rule" aria-hidden="true"></div>
   <p class="sub">Quatre jours, trois nuits, une année qui bascule.</p>
-  <p class="when">31 décembre 2026 – 3 janvier 2027 · à deux heures de Paris</p>
 </header>
 
 <main>
@@ -365,6 +366,7 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
   <p class="note">Cette convocation est nominative. Merci de ne pas la diffuser.</p>
 </footer>
   </div>
+  <div class="reveal" aria-hidden="true"></div>
 
 </main>
 
