@@ -100,41 +100,32 @@ section { padding-top: 96px; }
 .title p { font-family: var(--serif); font-weight: 600; font-size: 19px; letter-spacing: .03em; color: var(--brass); }
 .title h2 { font-size: clamp(36px, 9.6vw, 50px); line-height: 1.08; margin-top: 8px; }
 
-/* ——— Le jour et la nuit ——— */
-.regimes { padding-top: 104px; display: grid; }
-.regime { padding: 56px 24px 60px; }
-.regime .title { margin-bottom: 26px; }
-.regime .shots { display: grid; gap: 10px; }
-.regime figure img { display: block; width: 100%; object-fit: cover; }
-.regime figcaption { margin-top: 8px; font-size: 13.5px; }
-.jour { background: var(--os); color: #2a2e2a; }
-.jour .title p { color: #6E5630; }
-.jour .title h2 { color: #1A1E1B; }
-.jour .shots { grid-template-columns: 1fr 1fr; }
-.jour img { aspect-ratio: 3 / 4; }
-.jour figcaption { color: #5d5a50; }
-.nuit .shots { grid-template-columns: repeat(3, 1fr); }
-.nuit img { aspect-ratio: 9 / 16; }
-.nuit figcaption { color: var(--ash); }
-.regime > * { max-width: 592px; margin-left: auto; margin-right: auto; }
-@media (min-width: 960px) {
-  .regimes { grid-template-columns: 1fr 1fr; }
-  .regime { padding: 88px 64px 96px; }
-  .regime > * { max-width: 520px; }
-  .jour img, .nuit img { aspect-ratio: auto; height: 340px; }
+/* ——— Images : du jour à la nuit ——— */
+.strip-sec { padding-top: 104px; }
+.strip {
+  display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  padding: 0 24px; scroll-padding: 0 24px; scrollbar-width: none;
+}
+.strip::-webkit-scrollbar { display: none; }
+.strip figure { flex: 0 0 60vw; max-width: 240px; scroll-snap-align: center; }
+.strip img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.strip figcaption { margin-top: 10px; font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--os); }
+@media (min-width: 900px) {
+  .strip { justify-content: center; overflow: visible; gap: 16px; max-width: 1120px; margin: 0 auto; }
+  .strip figure { flex: 1 1 0; max-width: 204px; }
 }
 
 /* ——— L'essentiel ——— */
-.facts { display: grid; gap: 0 28px; }
-.fact { border-top: 1px solid var(--brass); padding: 14px 0 28px; }
-.fact .v { font-family: var(--serif); font-weight: 500; font-size: 33px; line-height: 1.15; color: var(--os); font-variant-numeric: lining-nums; }
-.fact .n { margin-top: 6px; font-size: 15px; line-height: 1.5; color: var(--ash); }
-.fact.urgent { border-top: 0; background: var(--bordeaux); padding: 18px 20px 20px; margin-top: 2px; }
-.fact.urgent .n { color: #E3CFCB; }
-@media (min-width: 600px) {
-  .facts { grid-template-columns: 1fr 1fr; }
-  .fact.urgent { margin: 0 0 28px; }
-}
+.ledger { margin: 0; }
+.ledger > div { padding: 18px 0 20px; border-bottom: 1px solid var(--hair); }
+.ledger > div:first-child { border-top: 1px solid var(--hair); }
+.ledger .row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 10px; font-family: var(--serif); }
+.ledger dt { font-weight: 600; font-size: 20px; letter-spacing: .02em; color: var(--brass); }
+.ledger .dots { flex: 1 1 24px; min-width: 24px; border-bottom: 1px dotted rgba(184,148,92,.55); transform: translateY(-5px); }
+.ledger dd { margin: 0; }
+.ledger dd.v { font-weight: 500; font-size: 26px; line-height: 1.2; color: var(--os); margin-left: auto; text-align: right; font-variant-numeric: lining-nums; }
+.ledger dd.n { margin-top: 6px; font-size: 15px; line-height: 1.5; color: var(--ash); }
+.ledger .urgent dd.v { background: var(--bordeaux); padding: 1px 10px 3px; }
 
 /* ——— Confirmer ——— */
 .steps { list-style: none; margin: 0; padding: 0; }
@@ -154,9 +145,8 @@ section { padding-top: 96px; }
 .btn:active { transform: scale(.985); background: #a58350; }
 @media (hover: hover) { .btn:hover { background: #c9a56c; } }
 .btn:focus-visible { outline: 2px solid var(--os); outline-offset: 3px; }
-.nb { background: var(--panel); border-left: 2px solid var(--brass); padding: 20px 20px 22px 22px; }
-.nb h3 { font-weight: 600; font-size: 20px; letter-spacing: .02em; color: var(--brass); margin-bottom: 8px; }
-.nb p + p { margin-top: 10px; }
+.after { margin-top: 0; padding-top: 24px; border-top: 1px solid var(--hair); }
+.after p + p { margin-top: 10px; }
 
 /* ——— Questions ——— */
 .faq h3 { font-weight: 600; font-size: 20px; letter-spacing: .03em; color: var(--brass); margin: 40px 0 4px; }
@@ -190,7 +180,8 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
   .btn { display: inline-flex; padding: 10px 44px; }
   section { padding-top: 128px; }
 }
-@media (max-width: 350px) { .letter { padding: 38px 22px 74px; font-size: 20px; } .fact .v { font-size: 29px; } }
+@media (max-width: 480px) { .ledger dt { font-size: 19px; } .ledger dd.v { font-size: 22.5px; } .ledger .row { gap: 0 8px; } }
+@media (max-width: 350px) { .letter { padding: 38px 22px 74px; font-size: 20px; } .ledger dd.v { font-size: 21px; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
@@ -218,29 +209,15 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
     </article>
   </div>
 
-  <div class="regimes">
-    <section class="regime jour" aria-labelledby="jour">
-      <header class="title">
-        <p>Le jour&nbsp;: le Domaine</p>
-        <h2 id="jour">Brume, chasse et vieilles fortunes</h2>
-      </header>
-      <div class="shots">
-        <figure><img src="g-domaine.jpg" alt="Une allée bordée d'arbres mène à un manoir en pierre" loading="lazy"><figcaption>L'arrivée</figcaption></figure>
-        <figure><img src="g-chasse.jpg" alt="Des chasseurs en tweed et leurs chiens devant une colonnade" loading="lazy"><figcaption>La battue</figcaption></figure>
-      </div>
-    </section>
-    <section class="regime nuit" aria-labelledby="nuit">
-      <header class="title">
-        <p>La nuit&nbsp;: le Conseil</p>
-        <h2 id="nuit">Bougies, serments et disparitions</h2>
-      </header>
-      <div class="shots">
-        <figure><img src="g-escalier.jpg" alt="Une silhouette gravit un escalier bordé de bougies" loading="lazy"><figcaption>L'escalier</figcaption></figure>
-        <figure><img src="g-conseil.jpg" alt="Des membres en cape forment un cercle sous des lustres" loading="lazy"><figcaption>Le Conseil</figcaption></figure>
-        <figure><img src="g-feu.jpg" alt="Des silhouettes autour d'un feu dans une forêt brumeuse" loading="lazy"><figcaption>Le feu</figcaption></figure>
-      </div>
-    </section>
-  </div>
+  <section class="strip-sec" aria-label="L'univers de l'Ordre">
+    <div class="strip">
+      <figure><img src="g-domaine.jpg" alt="Une allée bordée d'arbres mène à un manoir en pierre" loading="lazy"><figcaption>L'arrivée</figcaption></figure>
+      <figure><img src="g-chasse.jpg" alt="Des chasseurs en tweed et leurs chiens devant une colonnade" loading="lazy"><figcaption>Le jour</figcaption></figure>
+      <figure><img src="g-escalier.jpg" alt="Une silhouette gravit un escalier bordé de bougies" loading="lazy"><figcaption>La nuit</figcaption></figure>
+      <figure><img src="g-conseil.jpg" alt="Des membres en cape forment un cercle sous des lustres" loading="lazy"><figcaption>Le Conseil</figcaption></figure>
+      <figure><img src="g-feu.jpg" alt="Des silhouettes autour d'un feu dans une forêt brumeuse" loading="lazy"><figcaption>Le feu</figcaption></figure>
+    </div>
+  </section>
 
   <section aria-labelledby="essentiel">
     <div class="col">
@@ -248,24 +225,24 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
         <p>Ce qu'il faut savoir</p>
         <h2 id="essentiel">L'essentiel</h2>
       </header>
-      <div class="facts">
-        <div class="fact">
-          <p class="v">31 déc. → 3 janv.</p>
-          <p class="n">Arrivée le jeudi 31 à partir de 19&nbsp;h. Départ le dimanche 3 en début d'après-midi.</p>
+      <dl class="ledger">
+        <div>
+          <div class="row"><dt>Dates</dt><span class="dots"></span><dd class="v">31 déc. → 3 janv.</dd></div>
+          <dd class="n">Arrivée le jeudi 31 à partir de 19&nbsp;h. Départ le dimanche 3 en début d'après-midi.</dd>
         </div>
-        <div class="fact">
-          <p class="v">À 2&nbsp;h de Paris</p>
-          <p class="n">Un domaine dans un rayon de deux heures. L'adresse est communiquée aux membres confirmés.</p>
+        <div>
+          <div class="row"><dt>Lieu</dt><span class="dots"></span><dd class="v">à 2&nbsp;h de Paris</dd></div>
+          <dd class="n">Un domaine dans un rayon de deux heures. L'adresse est communiquée aux membres confirmés.</dd>
         </div>
-        <div class="fact">
-          <p class="v">400&nbsp;€ par personne</p>
-          <p class="n">En deux versements de 200&nbsp;€. Tout compris, hors transport, plus une charge à assumer pendant le séjour.</p>
+        <div>
+          <div class="row"><dt>Contribution</dt><span class="dots"></span><dd class="v">400&nbsp;€ par personne</dd></div>
+          <dd class="n">En deux versements de 200&nbsp;€. Tout compris, hors transport, plus une charge à assumer pendant le séjour.</dd>
         </div>
-        <div class="fact urgent">
-          <p class="v">Réponse avant le 18&nbsp;nov.</p>
-          <p class="n">Mercredi à minuit&nbsp;: inscription et premier versement de 200&nbsp;€.</p>
+        <div class="urgent">
+          <div class="row"><dt>Réponse</dt><span class="dots"></span><dd class="v">avant le 18&nbsp;nov.</dd></div>
+          <dd class="n">Mercredi à minuit&nbsp;: inscription et premier versement de 200&nbsp;€.</dd>
         </div>
-      </div>
+      </dl>
     </div>
   </section>
 
@@ -294,8 +271,7 @@ footer .note { margin-top: 22px; font-size: 13.5px; }
           </div>
         </li>
       </ol>
-      <div class="nb">
-        <h3>À retenir</h3>
+      <div class="after">
         <p>Seul le premier versement vaut confirmation. Ces acomptes nous permettent de réserver le domaine&nbsp;; sans eux, rien ne peut être retenu. Les places sont limitées.</p>
         <p>Tout le reste vous parviendra plus tard, par courrier, à l'adresse indiquée dans le registre. Surveillez votre pigeonnier.</p>
       </div>
